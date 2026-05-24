@@ -575,10 +575,10 @@ body:has(.vb.v2) {
   padding: 0;
 }
 .header.v2.scrolled {
-  background: rgba(250, 238, 221, 0.78);
+  background: rgba(255, 255, 255, 0.85);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
   backdrop-filter: blur(20px) saturate(150%);
-  border-bottom-color: rgba(43, 24, 18, 0.08);
+  border-bottom-color: rgba(26, 22, 18, 0.08);
   height: 72px;
 }
 .header.v2 .header-inner {
@@ -758,13 +758,13 @@ body:has(.vb.v2) {
 
 /* Scroll Video Hero */
 .scroll-video-hero {
-  height: 500vh;
   position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 .scroll-video-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  position: relative;
+  height: 100%;
   width: 100%;
   overflow: hidden;
 }
@@ -799,28 +799,6 @@ body:has(.vb.v2) {
   position: absolute;
   top: 6rem;
   right: clamp(1.5rem, 5vw, 6rem);
-}
-.scroll-progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.15);
-  z-index: 3;
-}
-.scroll-progress-fill {
-  height: 100%;
-  width: 0%;
-  background: #C4A882;
-  transition: width 0.05s linear;
-}
-@media (max-width: 768px) {
-  .scroll-video-hero { height: 100vh; }
-  .scroll-video-sticky { position: relative; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .scroll-video-hero { height: 100vh; }
 }
 
 .vb-hero-pill {
@@ -2644,19 +2622,6 @@ body:has(.vb.v2) {
       muted
       preload="auto"
     ></video>
-    <div class="hero-content">
-      <h1 class="vb-hero-h1">
-      </h1>
-      <div class="reveal" style="transition-delay:1.4s">
-      </div>
-      <div class="reveal" style="transition-delay:1.6s">
-        <div class="vb-hero-ctas">
-        </div>
-      </div>
-    </div>
-    <div class="scroll-progress-bar">
-      <div class="scroll-progress-fill" id="progressFill"></div>
-    </div>
   </div>
 </section>
 
@@ -3502,7 +3467,9 @@ body:has(.vb.v2) {
   var header = document.getElementById('header');
   function updateHeader() {
     if (!header) return;
-    if (window.scrollY > 60) {
+    var heroEl = document.getElementById('scroll-hero');
+    var heroEnd = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : window.innerHeight;
+    if (window.scrollY > heroEnd - 100) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
@@ -3805,73 +3772,14 @@ body:has(.vb.v2) {
 
 })();
 
-// ── Scroll Video Hero ──
+// ── Hero Video Autoplay ──
 (function() {
   var video = document.getElementById('heroVideo');
-  var hero = document.getElementById('scroll-hero');
-  var progressFill = document.getElementById('progressFill');
-
-  if (!video || !hero) return;
-
-  var isMobile = window.matchMedia('(max-width: 768px)').matches;
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (isMobile || prefersReduced) {
-    video.autoplay = true;
-    video.loop = true;
-    video.play().catch(function() {});
-    return;
-  }
-
-  video.pause();
-  video.currentTime = 0;
-
-  var isVideoReady = false;
-  video.addEventListener('loadedmetadata', function() {
-    isVideoReady = true;
-  });
-  video.load();
-
-  var ticking = false;
-  function updateVideo() {
-    if (!isVideoReady || !video.duration) return;
-
-    var heroRect = hero.getBoundingClientRect();
-    var heroTop = heroRect.top;
-    var heroHeight = hero.offsetHeight;
-    var windowHeight = window.innerHeight;
-
-    var scrolled = -heroTop;
-    var scrollable = heroHeight - windowHeight;
-
-    if (scrolled <= 0) {
-      video.currentTime = 0;
-      if (progressFill) progressFill.style.width = '0%';
-      return;
-    }
-
-    if (scrolled >= scrollable) {
-      video.currentTime = video.duration;
-      if (progressFill) progressFill.style.width = '100%';
-      return;
-    }
-
-    var progress = scrolled / scrollable;
-    video.currentTime = progress * video.duration;
-    if (progressFill) progressFill.style.width = (progress * 100) + '%';
-  }
-
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      requestAnimationFrame(function() {
-        updateVideo();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-
-  window.addEventListener('resize', updateVideo);
+  if (!video) return;
+  video.autoplay = true;
+  video.loop = true;
+  video.muted = true;
+  video.play().catch(function() {});
 })();
 </script>
 
