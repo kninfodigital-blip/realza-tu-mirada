@@ -16,31 +16,31 @@
    ============================================================= */
 
 :root {
-  --bg-canvas: #FAF4EC;
-  --bg-warm: #F2E6D5;
-  --bg-peach: #EAD0B5;
-  --bg-peach-deep: #E2B894;
-  --bg-deep: #0B0908;
+  --bg-canvas: #FFFFFF;
+  --bg-warm: #FFFFFF;
+  --bg-peach: #C4A882;
+  --bg-peach-deep: #C4A882;
+  --bg-deep: #1A1612;
   --bg-ink: #1A1612;
 
-  --accent-gold: #B8956A;
-  --accent-bronze: #8C6F4E;
-  --accent-rose: #D4A799;
+  --accent-gold: #C4A882;
+  --accent-bronze: #A89070;
+  --accent-rose: #C4A882;
 
-  --neutral-sand: #D4BFA3;
+  --neutral-sand: #C4A882;
   --neutral-taupe: #8C7A6B;
-  --neutral-stone: #6E5F52;
+  --neutral-stone: #1A1612;
 
   --text-primary: #1A1612;
-  --text-secondary: #4A3F37;
+  --text-secondary: #1A1612;
   --text-muted: #8C7A6B;
-  --text-on-dark: #FAF4EC;
-  --text-on-dark-muted: #C7B8A6;
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-muted: #C4A882;
 
   --line-hairline: rgba(26, 22, 18, 0.08);
   --line-medium: rgba(26, 22, 18, 0.2);
   --line-strong: rgba(26, 22, 18, 0.5);
-  --line-on-dark: rgba(250, 244, 236, 0.12);
+  --line-on-dark: rgba(255, 255, 255, 0.12);
 
   --font-display: "Cormorant Garamond", "Cormorant", Georgia, serif;
   --font-body: "Manrope", system-ui, -apple-system, sans-serif;
@@ -74,16 +74,16 @@
   --space-10: 16rem;
 
   --shadow-soft: 0 8px 24px -8px rgba(26, 22, 18, 0.08), 0 16px 48px -16px rgba(26, 22, 18, 0.06);
-  --shadow-warm: 0 24px 80px -24px rgba(184, 149, 106, 0.35);
+  --shadow-warm: 0 24px 80px -24px rgba(196, 168, 130, 0.35);
 
   --ease-out: cubic-bezier(0.7, 0, 0.3, 1);
   --ease-in-out: cubic-bezier(0.83, 0, 0.17, 1);
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --brand-bg: var(--bg-canvas);
-  --brand-fg: var(--text-primary);
-  --brand-accent: var(--accent-gold);
-  --brand-secondary: var(--bg-peach);
+  --brand-bg: #FFFFFF;
+  --brand-fg: #1A1612;
+  --brand-accent: #C4A882;
+  --brand-secondary: #C4A882;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -532,24 +532,24 @@ a { color: inherit; text-decoration: none; }
    ================================================================ */
 
 .vb {
-  --vb-cream: #FAEEDD;
-  --vb-peach-lt: #F8E6D1;
-  --vb-peach: #F5DEC1;
-  --vb-peach-md: #F0CFA3;
-  --vb-peach-deep: #EFC499;
-  --vb-coral: #EAB388;
-  --vb-coral-deep: #D89764;
-  --vb-ink: #1A0F0A;
-  --vb-ink-soft: #2B1812;
-  --vb-text: #2B1812;
+  --vb-cream: #FFFFFF;
+  --vb-peach-lt: #FFFFFF;
+  --vb-peach: #C4A882;
+  --vb-peach-md: #C4A882;
+  --vb-peach-deep: #C4A882;
+  --vb-coral: #C4A882;
+  --vb-coral-deep: #A89070;
+  --vb-ink: #1A1612;
+  --vb-ink-soft: #1A1612;
+  --vb-text: #1A1612;
   --vb-text-muted: rgba(43, 24, 18, 0.6);
   --vb-text-soft: rgba(43, 24, 18, 0.78);
-  --vb-gold: #8C4A1F;
-  --vb-gold-bright: #A35C32;
-  --vb-neon: #FFC58A;
+  --vb-gold: #C4A882;
+  --vb-gold-bright: #C4A882;
+  --vb-neon: #C4A882;
   --vb-line: rgba(43, 24, 18, 0.18);
   --vb-line-strong: rgba(43, 24, 18, 0.35);
-  --vb-paper: #F8EEDD;
+  --vb-paper: #FFFFFF;
 }
 
 .vb.v2 {
@@ -756,86 +756,92 @@ body:has(.vb.v2) {
   line-height: 1.6;
 }
 
-.vb-hero {
+/* Scroll Video Hero */
+.scroll-video-hero {
+  height: 500vh;
   position: relative;
-  min-height: 100vh;
+}
+.scroll-video-sticky {
+  position: sticky;
+  top: 0;
   height: 100vh;
-  max-height: 1080px;
+  width: 100%;
   overflow: hidden;
-  background: linear-gradient(180deg, #FAD6B4 0%, #F5C297 50%, #EAA875 100%);
-  color: var(--vb-text);
 }
-.vb-hero-bg {
+.scroll-video-sticky video {
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 20% 15%, rgba(255, 220, 188, 0.7) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 80%, rgba(208, 132, 80, 0.4) 0%, transparent 60%);
-}
-.vb-hero-grain {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-  opacity: 0.2;
-  mix-blend-mode: multiply;
-}
-.vb-hero-eye-wrap {
-  position: absolute;
-  inset: 0;
-  display: block;
-  z-index: 1;
-}
-.vb-eye-svg {
-  position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: block;
+  object-fit: cover;
 }
-.vb-hero-overlay {
+.hero-content {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   z-index: 2;
-  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.55) 100%);
+  color: #FFFFFF;
+  padding: 0 clamp(1.5rem, 5vw, 6rem) 5rem;
 }
-.vb-hero-overlay > * { pointer-events: auto; }
-
-.vb-hero-top {
+.hero-content .vb-hero-pill {
   position: absolute;
   top: 6rem;
-  left: 0; right: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: clamp(1.5rem, 5vw, 6rem);
-  padding-right: clamp(1.5rem, 5vw, 6rem);
+  left: clamp(1.5rem, 5vw, 6rem);
+}
+.hero-content .vb-hero-scroll-hint {
+  position: absolute;
+  top: 6rem;
+  right: clamp(1.5rem, 5vw, 6rem);
+}
+.scroll-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 3;
+}
+.scroll-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #C4A882;
+  transition: width 0.05s linear;
+}
+@media (max-width: 768px) {
+  .scroll-video-hero { height: 100vh; }
+  .scroll-video-sticky { position: relative; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-video-hero { height: 100vh; }
 }
 
-.vb-hero-title-wrap {
-  position: absolute;
-  bottom: 5rem;
-  left: clamp(1.5rem, 5vw, 6rem);
-  max-width: 540px;
-}
 .vb-hero-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.5rem 1rem;
-  border: 1px solid rgba(43, 24, 18, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 999px;
   font-size: 0.7rem;
   letter-spacing: 0.22em;
   font-weight: 500;
   text-transform: uppercase;
-  background: rgba(250, 238, 221, 0.4);
+  background: rgba(26, 22, 18, 0.3);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+  color: #FFFFFF;
 }
 .vb-hero-pill .dot {
   width: 6px; height: 6px;
-  background: var(--vb-gold-bright);
+  background: #C4A882;
   border-radius: 50%;
   animation: pulseDot 2.4s ease-in-out infinite;
 }
@@ -847,7 +853,7 @@ body:has(.vb.v2) {
   letter-spacing: 0.32em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--vb-text-soft);
+  color: rgba(255, 255, 255, 0.7);
 }
 .vb-hero-scroll-hint svg { animation: hintArrow 2.2s ease-in-out infinite; }
 @keyframes hintArrow {
@@ -863,12 +869,12 @@ body:has(.vb.v2) {
   letter-spacing: -0.035em;
   margin: 0;
 }
-.vb-hero-h1 .line-1 { display: block; color: var(--vb-text); }
+.vb-hero-h1 .line-1 { display: block; color: #FFFFFF; }
 .vb-hero-h1 .line-2 {
   display: block;
   font-style: italic;
   font-weight: 300;
-  color: var(--vb-gold);
+  color: #C4A882;
   margin-left: 0.6em;
   letter-spacing: -0.03em;
 }
@@ -877,7 +883,7 @@ body:has(.vb.v2) {
   max-width: 36ch;
   font-size: 0.96rem;
   line-height: 1.55;
-  color: var(--vb-text-soft);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 300;
 }
 .vb-hero-ctas {
@@ -886,48 +892,6 @@ body:has(.vb.v2) {
   gap: 1rem;
   flex-wrap: wrap;
 }
-
-.vb-hero-bottom {
-  position: absolute;
-  bottom: 5rem;
-  right: clamp(1.5rem, 5vw, 6rem);
-  max-width: 320px;
-}
-.vb-hero-meta-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  padding: 1.6rem;
-  background: rgba(250, 238, 221, 0.45);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(43, 24, 18, 0.12);
-  border-radius: 2px;
-}
-.vb-hero-meta { display: flex; flex-direction: column; gap: 0.4rem; }
-.vb-hero-meta .num {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 400;
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--vb-gold);
-}
-.vb-hero-meta .lbl {
-  font-size: 0.66rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--vb-text-soft);
-  font-weight: 500;
-}
-
-.vb-anno > g { opacity: 0; animation: annoIn 0.8s ease forwards; }
-.vb-anno-1 { animation-delay: 1.5s; }
-.vb-anno-2 { animation-delay: 1.7s; }
-.vb-anno-3 { animation-delay: 1.9s; }
-.vb-anno-4 { animation-delay: 2.1s; }
-.vb-anno-5 { animation-delay: 2.3s; }
-@keyframes annoIn { to { opacity: 1; } }
 
 .vb-marquee {
   background: var(--vb-ink);
@@ -2242,7 +2206,7 @@ body:has(.vb.v2) {
 .vb-studio-photo-wrap { position: relative; }
 .vb-studio-photo {
   aspect-ratio: 3/4;
-  background: url(assets/duo-studio.jpg) no-repeat center / cover;
+  background: url(assets/duo-studio.png) no-repeat center / cover;
   position: relative;
 }
 .vb-studio-photo::after {
@@ -2479,7 +2443,7 @@ body:has(.vb.v2) {
 .footer-studio-photo {
   width: 100%;
   aspect-ratio: 5/3;
-  background: url(assets/duo-studio.jpg) no-repeat center / cover;
+  background: url(assets/duo-studio.png) no-repeat center / cover;
   border-radius: 2px;
   margin: 0.5rem 0 1.4rem;
 }
@@ -2577,8 +2541,6 @@ body:has(.vb.v2) {
 @media (max-width: 768px) {
   .header.v2 .header-nav { display: none; }
   .header.v2 .header-actions .lang-switcher { display: none; }
-  .vb-eye-svg { padding: 0 1rem; }
-  .vb-hero-title-wrap { padding-top: 5vh; }
   .vb-hero-h1 .line-2 { margin-left: 0.5em; }
   .vb-chapter { grid-template-columns: 1fr; gap: 2rem; }
   .vb-chapter.reverse { direction: ltr; }
@@ -2662,7 +2624,7 @@ body:has(.vb.v2) {
         <span class="arrow">&rarr;</span>
       </a>
       <a href="#top" class="header-logo-img" aria-label="Realza tu mirada">
-        <img src="assets/logo.jpg" alt="Realza tu mirada" />
+        <img src="assets/logo.png" alt="Realza tu mirada" />
       </a>
     </div>
   </div>
@@ -2676,133 +2638,24 @@ body:has(.vb.v2) {
 </a>
 
 <!-- ============================================================= -->
-<!-- HERO                                                           -->
+<!-- HERO — SCROLL VIDEO                                           -->
 <!-- ============================================================= -->
-<section class="vb-hero" id="top" data-shift="hero">
-  <div class="vb-hero-bg">
-    <div class="vb-hero-grain"></div>
-  </div>
-
-  <div class="vb-hero-eye-wrap">
-    <!-- SVG Eye Illustration -->
-    <svg viewBox="0 0 1400 900" class="vb-eye-svg" aria-hidden="true" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
-      <defs>
-        <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#5C2D14" />
-          <stop offset="50%" stop-color="#3A1A0A" />
-          <stop offset="100%" stop-color="#1A0805" />
-        </radialGradient>
-        <radialGradient id="haloGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="rgba(255, 205, 165, 0.4)" />
-          <stop offset="100%" stop-color="rgba(255, 205, 165, 0)" />
-        </radialGradient>
-        <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="4" />
-        </filter>
-      </defs>
-
-      <ellipse cx="700" cy="460" rx="500" ry="320" fill="url(#haloGrad)" />
-
-      <g class="vb-eye-brow">
-        <path d="M 350 250 Q 500 180, 700 195 Q 900 210, 1050 270 Q 1000 250, 920 240 Q 800 225, 700 230 Q 580 235, 470 250 Q 410 255, 350 250 Z" fill="#2B1812" />
-        <g stroke="#2B1812" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.85">
-          <path d="M380 248 L375 225" /><path d="M420 240 L415 215" /><path d="M460 232 L455 205" />
-          <path d="M500 225 L497 195" /><path d="M540 215 L538 185" /><path d="M580 210 L580 178" />
-          <path d="M620 205 L622 175" /><path d="M660 200 L665 168" /><path d="M700 197 L705 165" />
-          <path d="M740 198 L748 168" /><path d="M780 202 L790 170" /><path d="M820 210 L832 178" />
-          <path d="M860 218 L876 188" /><path d="M900 228 L920 200" /><path d="M940 240 L965 215" />
-          <path d="M980 252 L1010 230" />
-        </g>
-      </g>
-
-      <path class="vb-eye-lid-top" d="M 380 460 Q 700 320, 1020 460" fill="none" stroke="#2B1812" stroke-width="3.5" stroke-linecap="round" />
-      <path class="vb-eye-lid-bottom" d="M 380 460 Q 700 580, 1020 460" fill="none" stroke="#2B1812" stroke-width="2" stroke-linecap="round" />
-
-      <clipPath id="eyeClip">
-        <path d="M 380 460 Q 700 320, 1020 460 Q 700 580, 380 460 Z" />
-      </clipPath>
-      <g clip-path="url(#eyeClip)">
-        <rect x="380" y="320" width="640" height="260" fill="#F8EEDD" />
-        <circle cx="700" cy="440" r="85" fill="url(#irisGrad)" />
-        <circle cx="700" cy="440" r="85" fill="none" stroke="#8C4A1F" stroke-width="0.6" opacity="0.4" />
-        <circle cx="700" cy="440" r="60" fill="none" stroke="#A35C32" stroke-width="0.5" opacity="0.5" />
-        <circle cx="700" cy="440" r="32" fill="#0A0503" />
-        <circle cx="685" cy="425" r="9" fill="#FFE7CC" opacity="0.95" />
-        <circle cx="710" cy="445" r="3" fill="#FFE7CC" opacity="0.8" />
-      </g>
-
-      <g class="vb-eye-lashes-top" stroke="#2B1812" stroke-width="2" stroke-linecap="round" fill="none">
-        <path d="M395 458 Q380 410, 370 360" /><path d="M420 442 Q410 388, 405 340" />
-        <path d="M450 425 Q445 365, 445 318" /><path d="M482 410 Q480 350, 485 300" />
-        <path d="M515 395 Q515 335, 525 290" /><path d="M550 382 Q552 322, 565 275" />
-        <path d="M585 372 Q590 312, 605 265" /><path d="M620 365 Q628 305, 645 260" />
-        <path d="M655 360 Q665 300, 685 258" /><path d="M690 358 Q702 298, 722 256" />
-        <path d="M725 358 Q738 298, 758 258" /><path d="M760 360 Q775 300, 795 260" />
-        <path d="M795 365 Q812 305, 832 265" /><path d="M828 372 Q845 312, 865 275" />
-        <path d="M860 382 Q878 322, 895 290" /><path d="M888 395 Q906 335, 920 300" />
-        <path d="M912 410 Q930 350, 942 318" /><path d="M935 425 Q952 365, 962 340" />
-        <path d="M955 442 Q968 388, 975 360" /><path d="M1005 458 Q1015 410, 1020 360" stroke-width="2.2" />
-      </g>
-
-      <g class="vb-eye-lashes-bottom" stroke="#2B1812" stroke-width="1.4" stroke-linecap="round" fill="none">
-        <path d="M450 488 L455 510" /><path d="M490 502 L495 528" />
-        <path d="M530 510 L535 538" /><path d="M570 515 L575 545" />
-        <path d="M610 518 L615 548" /><path d="M650 519 L655 550" />
-        <path d="M690 520 L695 552" /><path d="M730 519 L735 550" />
-        <path d="M770 518 L775 548" /><path d="M810 515 L815 545" />
-        <path d="M850 510 L855 538" /><path d="M890 502 L895 528" />
-        <path d="M930 488 L935 510" />
-      </g>
-
-      <path class="vb-eye-liner" d="M 1000 458 Q 1040 450, 1075 432 Q 1050 442, 1020 452" fill="#2B1812" stroke="none" />
-
-      <g class="vb-anno" font-family="Manrope, sans-serif">
-        <g class="vb-anno-1">
-          <line x1="180" y1="180" x2="380" y2="240" stroke="#8C4A1F" stroke-width="1" stroke-dasharray="3 3" />
-          <circle cx="380" cy="240" r="4" fill="#8C4A1F" />
-          <text x="40" y="155" fill="#8C4A1F" font-size="11" font-weight="600" letter-spacing="2.5">01 — LAMINADO</text>
-          <text x="40" y="178" fill="#2B1812" font-size="13" font-style="italic" font-family="Cormorant Garamond, serif" font-weight="400">Ceja con forma</text>
-        </g>
-        <g class="vb-anno-2">
-          <line x1="1220" y1="320" x2="900" y2="340" stroke="#8C4A1F" stroke-width="1" stroke-dasharray="3 3" />
-          <circle cx="900" cy="340" r="4" fill="#8C4A1F" />
-          <text x="1220" y="305" fill="#8C4A1F" font-size="11" font-weight="600" letter-spacing="2.5">02 — LIFTING</text>
-          <text x="1220" y="328" fill="#2B1812" font-size="13" font-style="italic" font-family="Cormorant Garamond, serif">Curva natural</text>
-        </g>
-        <g class="vb-anno-3">
-          <line x1="1230" y1="490" x2="970" y2="440" stroke="#8C4A1F" stroke-width="1" stroke-dasharray="3 3" />
-          <circle cx="970" cy="440" r="4" fill="#8C4A1F" />
-          <text x="1230" y="475" fill="#8C4A1F" font-size="11" font-weight="600" letter-spacing="2.5">03 — EXTENSIONES</text>
-          <text x="1230" y="498" fill="#2B1812" font-size="13" font-style="italic" font-family="Cormorant Garamond, serif">Pelo a pelo</text>
-        </g>
-        <g class="vb-anno-4">
-          <line x1="180" y1="720" x2="440" y2="540" stroke="#8C4A1F" stroke-width="1" stroke-dasharray="3 3" />
-          <circle cx="440" cy="540" r="4" fill="#8C4A1F" />
-          <text x="40" y="745" fill="#8C4A1F" font-size="11" font-weight="600" letter-spacing="2.5">04 — DISE&Ntilde;O DE MIRADA</text>
-          <text x="40" y="768" fill="#2B1812" font-size="13" font-style="italic" font-family="Cormorant Garamond, serif">Proporci&oacute;n</text>
-        </g>
-        <g class="vb-anno-5">
-          <line x1="1220" y1="700" x2="850" y2="535" stroke="#8C4A1F" stroke-width="1" stroke-dasharray="3 3" />
-          <circle cx="850" cy="535" r="4" fill="#8C4A1F" />
-          <text x="1220" y="685" fill="#8C4A1F" font-size="11" font-weight="600" letter-spacing="2.5">05 — S&Eacute;RUM 3ML</text>
-          <text x="1220" y="708" fill="#2B1812" font-size="13" font-style="italic" font-family="Cormorant Garamond, serif">Cuidado en casa</text>
-        </g>
-      </g>
-    </svg>
-  </div>
-
-  <div class="vb-hero-overlay">
-    <div class="vb-hero-top container">
-      <div class="vb-hero-pill">
-        <span class="dot"></span> EST. ANDORRA &middot; ESTUDIO DE MIRADA
-      </div>
+<section class="scroll-video-hero" id="scroll-hero" data-shift="hero">
+  <div class="scroll-video-sticky">
+    <video
+      id="heroVideo"
+      src="assets/hero-video.mp4"
+      poster="assets/hero-poster.png"
+      playsinline
+      muted
+      preload="auto"
+    ></video>
+    <div class="hero-content">
       <div class="vb-hero-scroll-hint">
         <span>Desliza</span>
         <svg width="40" height="14" viewBox="0 0 40 14"><path d="M2 7h35 m-6 -5 l6 5 -6 5" stroke="currentColor" stroke-width="1" fill="none" /></svg>
       </div>
-    </div>
 
-    <div class="vb-hero-title-wrap container">
       <h1 class="vb-hero-h1">
         <span class="letter-stagger line-1"><span class="letter" style="transition-delay:0s">R</span><span class="letter" style="transition-delay:0.04s">e</span><span class="letter" style="transition-delay:0.08s">a</span><span class="letter" style="transition-delay:0.12s">l</span><span class="letter" style="transition-delay:0.16s">z</span><span class="letter" style="transition-delay:0.2s">a</span></span>
         <span class="line-2"><span class="letter-stagger"><span class="letter" style="transition-delay:0s">t</span><span class="letter" style="transition-delay:0.05s">u</span><span class="letter" style="transition-delay:0.1s">&nbsp;</span><span class="letter" style="transition-delay:0.15s">m</span><span class="letter" style="transition-delay:0.2s">i</span><span class="letter" style="transition-delay:0.25s">r</span><span class="letter" style="transition-delay:0.3s">a</span><span class="letter" style="transition-delay:0.35s">d</span><span class="letter" style="transition-delay:0.4s">a</span><span class="letter" style="transition-delay:0.45s">.</span></span></span>
@@ -2817,7 +2670,9 @@ body:has(.vb.v2) {
         </div>
       </div>
     </div>
-
+    <div class="scroll-progress-bar">
+      <div class="scroll-progress-fill" id="progressFill"></div>
+    </div>
   </div>
 </section>
 
@@ -2826,7 +2681,7 @@ body:has(.vb.v2) {
 <!-- ============================================================= -->
 <div class="vb-marquee" aria-hidden="true">
   <div class="vb-marquee-track">
-    <span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum 3 ml</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum 3 ml</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum 3 ml</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span>
+    <span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum para pesta&ntilde;as</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum para pesta&ntilde;as</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum para pesta&ntilde;as</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span>
   </div>
 </div>
 
@@ -2966,14 +2821,14 @@ body:has(.vb.v2) {
 <section class="vb-serum" id="serum" data-shift="serum">
   <div class="vb-serum-bigtype" aria-hidden="true">
     <span class="t1">S&Eacute;RUM</span>
-    <span class="t2">3 ml</span>
+    <span class="t2">para pesta&ntilde;as</span>
   </div>
 
   <div class="container vb-serum-grid">
     <div class="vb-serum-visual">
       <div class="vb-serum-halo"></div>
       <span class="vb-serum-aster tl">&#10038;</span>
-      <img class="vb-serum-product" src="assets/serum-product.jpg" alt="S&eacute;rum 3 ml" />
+      <img class="vb-serum-product" src="assets/serum-product.png" alt="S&eacute;rum para pesta&ntilde;as" />
       <span class="vb-serum-aster br">&#10043;</span>
       <span class="vb-serum-stamp">
         <svg viewBox="0 0 120 120" width="120" height="120">
@@ -2985,7 +2840,7 @@ body:has(.vb.v2) {
               <tspan font-family="Manrope, sans-serif" font-size="9" letter-spacing="3" fill="currentColor">REALZA &middot; BY J&amp;S &middot; ANDORRA &middot; </tspan>
             </textPath>
             <textPath href="#circle-path" startOffset="50%">
-              <tspan font-family="Manrope, sans-serif" font-size="9" letter-spacing="3" fill="currentColor">VEGANO &middot; NATURAL &middot; 3 ML &middot; </tspan>
+              <tspan font-family="Manrope, sans-serif" font-size="9" letter-spacing="3" fill="currentColor">VEGANO &middot; NATURAL &middot; PESTA&Ntilde;AS &middot;</tspan>
             </textPath>
           </text>
           <text x="60" y="65" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="22" fill="currentColor">&#10038;</text>
@@ -3132,7 +2987,7 @@ body:has(.vb.v2) {
       <div class="vb-orbit-ring r1"></div>
       <div class="vb-orbit-ring r2"></div>
       <div class="vb-orbit-center">
-        <img src="assets/serum-product.jpg" alt="S&eacute;rum" />
+        <img src="assets/serum-product.png" alt="S&eacute;rum" />
       </div>
 
       <!-- Orbit lines -->
@@ -3218,7 +3073,7 @@ body:has(.vb.v2) {
   <div class="container vb-duo-grid">
     <div class="vb-duo-amp" aria-hidden="true">&amp;</div>
     <div class="reveal vb-duo-photo">
-      <img src="assets/duo-side.jpg" alt="Jonathan y Stephany" />
+      <img src="assets/duo-side.png" alt="Jonathan y Stephany" />
       <span class="vb-duo-caption">J&amp;S &middot; 2026</span>
     </div>
     <div class="vb-duo-text">
@@ -3489,57 +3344,16 @@ body:has(.vb.v2) {
       </dl>
 
       <div class="reveal vb-studio-map-wrap">
-        <!-- Minimap SVG -->
-        <svg viewBox="0 0 480 360" class="vb-minimap" aria-hidden="true">
-          <defs>
-            <pattern id="paper" width="6" height="6" patternUnits="userSpaceOnUse">
-              <rect width="6" height="6" fill="#F5DEC1" />
-              <circle cx="1" cy="1" r="0.3" fill="rgba(43, 24, 18, 0.05)" />
-            </pattern>
-          </defs>
-          <rect width="480" height="360" fill="url(#paper)" />
-          <g stroke="#8C4A1F" stroke-width="1.4" fill="none" opacity="0.45">
-            <path d="M0 180 Q120 175 240 180 Q360 185 480 180" />
-            <path d="M240 0 L240 360" />
-            <path d="M60 60 L420 300" />
-            <path d="M50 280 Q200 200, 380 80" />
-            <path d="M0 240 Q160 245 320 240 Q400 238 480 240" stroke-dasharray="3 4" />
-            <path d="M120 0 L130 360" stroke-dasharray="3 4" />
-            <path d="M370 0 L360 360" stroke-dasharray="3 4" />
-          </g>
-          <path d="M-10 200 Q120 230, 250 210 Q380 195, 500 220" stroke="#A8C9D6" stroke-width="6" fill="none" opacity="0.7" />
-          <path d="M-10 200 Q120 230, 250 210 Q380 195, 500 220" stroke="#7DA9B8" stroke-width="1" fill="none" />
-          <g fill="#8C4A1F" opacity="0.18">
-            <rect x="50" y="100" width="40" height="30" />
-            <rect x="100" y="115" width="50" height="40" />
-            <rect x="260" y="110" width="55" height="35" />
-            <rect x="330" y="120" width="40" height="30" />
-            <rect x="60" y="250" width="50" height="40" />
-            <rect x="140" y="260" width="60" height="35" />
-            <rect x="300" y="250" width="45" height="40" />
-            <rect x="380" y="265" width="50" height="30" />
-          </g>
-          <g transform="translate(245, 175)">
-            <circle r="32" fill="rgba(255, 197, 138, 0.4)">
-              <animate attributeName="r" from="20" to="42" dur="2s" repeatCount="indefinite" />
-              <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite" />
-            </circle>
-            <circle r="14" fill="#A35C32" />
-            <circle r="6" fill="#FAEEDD" />
-            <text y="50" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="14" fill="#2B1812">Realza</text>
-          </g>
-          <g transform="translate(420, 50)">
-            <circle r="20" fill="none" stroke="#2B1812" stroke-width="0.8" />
-            <text y="-22" text-anchor="middle" font-size="9" fill="#2B1812" font-family="Manrope, sans-serif">N</text>
-            <path d="M0 -14 L4 8 L0 4 L-4 8 Z" fill="#2B1812" />
-          </g>
-          <g font-family="Manrope, sans-serif" font-size="9" fill="#8C4A1F" opacity="0.7">
-            <text x="120" y="178" letter-spacing="1.5">AV. CARLEMANY</text>
-            <text x="280" y="100" letter-spacing="1.5" transform="rotate(60 280 100)">PL. CO-PR&Iacute;NCEPS</text>
-          </g>
-          <rect x="6" y="6" width="468" height="348" fill="none" stroke="#8C4A1F" stroke-width="0.6" opacity="0.4" />
-        </svg>
-        <a href="#" class="vb-studio-map-link">Abrir en Google Maps <span class="arrow">&rarr;</span></a>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2952.5!2d1.5396!3d42.5078!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zQXYuIENhcmxlbWFueSA3MywgQUQ3MDAgRXNjYWxkZXMtRW5nb3JkYW55!5e0!3m2!1ses!2sad!4v1"
+          width="100%"
+          height="300"
+          style="border:0; border-radius:8px; filter:grayscale(0.3) contrast(1.05);"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        <a href="https://www.google.com/maps/search/Av.+Carlemany+73,+AD700+Escaldes-Engordany,+Andorra" target="_blank" rel="noopener" class="vb-studio-map-link">Abrir en Google Maps <span class="arrow">&rarr;</span></a>
       </div>
 
       <div class="vb-studio-contact">
@@ -3627,7 +3441,7 @@ body:has(.vb.v2) {
           </ul>
           <h4 style="margin-top:1.6rem">Tienda</h4>
           <ul class="footer-nav">
-            <li><a href="#">S&eacute;rum 3 ml</a></li>
+            <li><a href="#">S&eacute;rum para pesta&ntilde;as</a></li>
             <li><a href="#">Pack ritual</a></li>
             <li><a href="#">Tarjeta regalo</a></li>
           </ul>
@@ -3717,9 +3531,10 @@ body:has(.vb.v2) {
   var stickyBtn = document.getElementById('sticky-reserve');
   function updateSticky() {
     if (!stickyBtn) return;
-    var past = window.scrollY > window.innerHeight * 1.2;
-    var nearBottom = (window.innerHeight + window.scrollY) > document.body.offsetHeight - 600;
-    if (past && !nearBottom) {
+    var heroEl = document.getElementById('scroll-hero');
+    var heroBottom = heroEl ? heroEl.offsetTop + heroEl.offsetHeight : window.innerHeight;
+    var past = window.scrollY > heroBottom - window.innerHeight;
+    if (past) {
       stickyBtn.classList.add('visible');
     } else {
       stickyBtn.classList.remove('visible');
@@ -3730,17 +3545,17 @@ body:has(.vb.v2) {
 
   // ── Scroll color shift ──
   var SECTION_PALETTE = {
-    hero:     { bg: '#FAD6B4', fg: '#2B1812', accent: '#A35C32' },
-    manifest: { bg: '#FAEEDD', fg: '#2B1812', accent: '#A35C32' },
-    services: { bg: '#F5DEC1', fg: '#2B1812', accent: '#8C4A1F' },
-    serum:    { bg: '#EFC499', fg: '#2B1812', accent: '#7A3E15' },
-    booking:  { bg: '#F8E6D1', fg: '#2B1812', accent: '#A35C32' },
-    ingred:   { bg: '#1A0F0A', fg: '#FAEEDD', accent: '#FFC58A' },
-    gallery:  { bg: '#F2D9B8', fg: '#2B1812', accent: '#8C4A1F' },
-    duo:      { bg: '#E8B888', fg: '#2B1812', accent: '#7A3E15' },
-    training: { bg: '#1A0F0A', fg: '#FAEEDD', accent: '#FFC58A' },
-    testi:    { bg: '#F0CFA3', fg: '#2B1812', accent: '#8C4A1F' },
-    studio:   { bg: '#FAEEDD', fg: '#2B1812', accent: '#A35C32' }
+    hero:     { bg: '#1A1612', fg: '#FFFFFF', accent: '#C4A882' },
+    manifest: { bg: '#FFFFFF', fg: '#1A1612', accent: '#C4A882' },
+    services: { bg: '#FFFFFF', fg: '#1A1612', accent: '#C4A882' },
+    serum:    { bg: '#C4A882', fg: '#1A1612', accent: '#1A1612' },
+    booking:  { bg: '#FFFFFF', fg: '#1A1612', accent: '#C4A882' },
+    ingred:   { bg: '#1A1612', fg: '#FFFFFF', accent: '#C4A882' },
+    gallery:  { bg: '#FFFFFF', fg: '#1A1612', accent: '#C4A882' },
+    duo:      { bg: '#C4A882', fg: '#1A1612', accent: '#1A1612' },
+    training: { bg: '#1A1612', fg: '#FFFFFF', accent: '#C4A882' },
+    testi:    { bg: '#FFFFFF', fg: '#1A1612', accent: '#C4A882' },
+    studio:   { bg: '#FFFFFF', fg: '#1A1612', accent: '#C4A882' }
   };
 
   var shiftTicking = false;
@@ -3939,7 +3754,7 @@ body:has(.vb.v2) {
   // ── Testimonial carousel ──
   var testimonials = [
     { quote: 'Vine por una sesi\u00f3n y volv\u00ed por la experiencia. Stephany lee tu cara como nadie.', name: 'Marta L.', role: 'Laminado de cejas', img: 'assets/lamination-3.jpg' },
-    { quote: 'El s\u00e9rum me cambi\u00f3 las pesta\u00f1as en dos meses. Real, no marketing.', name: 'N\u00faria F.', role: 'S\u00e9rum 3 ml', img: 'assets/lamination-5.jpg' },
+    { quote: 'El s\u00e9rum me cambi\u00f3 las pesta\u00f1as en dos meses. Real, no marketing.', name: 'N\u00faria F.', role: 'S\u00e9rum para pesta\u00f1as', img: 'assets/lamination-5.jpg' },
     { quote: 'Andorra ten\u00eda deuda con un sitio como este \u2014 atendido, cuidado y bonito.', name: 'Clara V.', role: 'Clienta habitual', img: 'assets/lamination-2.jpg' },
     { quote: 'Jonathan es minucioso hasta lo enfermizo. Por eso mi laminado dura todo el mes.', name: 'Elena R.', role: 'Laminado + Lifting', img: 'assets/lamination-6.jpg' }
   ];
@@ -4004,6 +3819,75 @@ body:has(.vb.v2) {
     });
   }
 
+})();
+
+// ── Scroll Video Hero ──
+(function() {
+  var video = document.getElementById('heroVideo');
+  var hero = document.getElementById('scroll-hero');
+  var progressFill = document.getElementById('progressFill');
+
+  if (!video || !hero) return;
+
+  var isMobile = window.matchMedia('(max-width: 768px)').matches;
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (isMobile || prefersReduced) {
+    video.autoplay = true;
+    video.loop = true;
+    video.play().catch(function() {});
+    return;
+  }
+
+  video.pause();
+  video.currentTime = 0;
+
+  var isVideoReady = false;
+  video.addEventListener('loadedmetadata', function() {
+    isVideoReady = true;
+  });
+  video.load();
+
+  var ticking = false;
+  function updateVideo() {
+    if (!isVideoReady || !video.duration) return;
+
+    var heroRect = hero.getBoundingClientRect();
+    var heroTop = heroRect.top;
+    var heroHeight = hero.offsetHeight;
+    var windowHeight = window.innerHeight;
+
+    var scrolled = -heroTop;
+    var scrollable = heroHeight - windowHeight;
+
+    if (scrolled <= 0) {
+      video.currentTime = 0;
+      if (progressFill) progressFill.style.width = '0%';
+      return;
+    }
+
+    if (scrolled >= scrollable) {
+      video.currentTime = video.duration;
+      if (progressFill) progressFill.style.width = '100%';
+      return;
+    }
+
+    var progress = scrolled / scrollable;
+    video.currentTime = progress * video.duration;
+    if (progressFill) progressFill.style.width = (progress * 100) + '%';
+  }
+
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        updateVideo();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', updateVideo);
 })();
 </script>
 

@@ -4,31 +4,31 @@
 
 :root {
   /* Paleta base */
-  --bg-canvas: #FAF4EC;
-  --bg-warm: #F2E6D5;
-  --bg-peach: #EAD0B5;
-  --bg-peach-deep: #E2B894;
-  --bg-deep: #0B0908;
+  --bg-canvas: #FFFFFF;
+  --bg-warm: #FFFFFF;
+  --bg-peach: #C4A882;
+  --bg-peach-deep: #C4A882;
+  --bg-deep: #1A1612;
   --bg-ink: #1A1612;
 
-  --accent-gold: #B8956A;
-  --accent-bronze: #8C6F4E;
-  --accent-rose: #D4A799;
+  --accent-gold: #C4A882;
+  --accent-bronze: #A89070;
+  --accent-rose: #C4A882;
 
-  --neutral-sand: #D4BFA3;
+  --neutral-sand: #C4A882;
   --neutral-taupe: #8C7A6B;
-  --neutral-stone: #6E5F52;
+  --neutral-stone: #1A1612;
 
   --text-primary: #1A1612;
-  --text-secondary: #4A3F37;
+  --text-secondary: #1A1612;
   --text-muted: #8C7A6B;
-  --text-on-dark: #FAF4EC;
-  --text-on-dark-muted: #C7B8A6;
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-muted: #C4A882;
 
   --line-hairline: rgba(26, 22, 18, 0.08);
   --line-medium: rgba(26, 22, 18, 0.2);
   --line-strong: rgba(26, 22, 18, 0.5);
-  --line-on-dark: rgba(250, 244, 236, 0.12);
+  --line-on-dark: rgba(255, 255, 255, 0.12);
 
   /* Tipografía */
   --font-display: "Cormorant Garamond", "Cormorant", Georgia, serif;
@@ -72,10 +72,10 @@
   --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Marca */
-  --brand-bg: var(--bg-canvas);
-  --brand-fg: var(--text-primary);
-  --brand-accent: var(--accent-gold);
-  --brand-secondary: var(--bg-peach);
+  --brand-bg: #FFFFFF;
+  --brand-fg: #1A1612;
+  --brand-accent: #C4A882;
+  --brand-secondary: #C4A882;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

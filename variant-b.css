@@ -5,24 +5,24 @@
 
 /* Override root brand vars for B */
 .vb {
-  --vb-cream: #FAEEDD;
-  --vb-peach-lt: #F8E6D1;
-  --vb-peach: #F5DEC1;
-  --vb-peach-md: #F0CFA3;
-  --vb-peach-deep: #EFC499;
-  --vb-coral: #EAB388;
-  --vb-coral-deep: #D89764;
-  --vb-ink: #1A0F0A;
-  --vb-ink-soft: #2B1812;
-  --vb-text: #2B1812;
+  --vb-cream: #FFFFFF;
+  --vb-peach-lt: #FFFFFF;
+  --vb-peach: #C4A882;
+  --vb-peach-md: #C4A882;
+  --vb-peach-deep: #C4A882;
+  --vb-coral: #C4A882;
+  --vb-coral-deep: #A89070;
+  --vb-ink: #1A1612;
+  --vb-ink-soft: #1A1612;
+  --vb-text: #1A1612;
   --vb-text-muted: rgba(43, 24, 18, 0.6);
   --vb-text-soft: rgba(43, 24, 18, 0.78);
-  --vb-gold: #8C4A1F;
-  --vb-gold-bright: #A35C32;
-  --vb-neon: #FFC58A;
+  --vb-gold: #C4A882;
+  --vb-gold-bright: #C4A882;
+  --vb-neon: #C4A882;
   --vb-line: rgba(43, 24, 18, 0.18);
   --vb-line-strong: rgba(43, 24, 18, 0.35);
-  --vb-paper: #F8EEDD;
+  --vb-paper: #FFFFFF;
 }
 
 .vb.v2 {
