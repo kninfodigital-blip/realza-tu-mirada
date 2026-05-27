@@ -257,14 +257,10 @@ a { color: inherit; text-decoration: none; }
   z-index: 100;
   display: flex;
   align-items: center;
-  transition: background 0.4s var(--ease-out), backdrop-filter 0.4s var(--ease-out), border-color 0.4s var(--ease-out);
-  border-bottom: 1px solid transparent;
-}
-.header.scrolled {
-  background: rgba(250, 244, 236, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom-color: var(--line-hairline);
+  background: #FFFFFF !important;
+  border-bottom: 1px solid var(--line-hairline);
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 .header.dark.scrolled {
   background: rgba(11, 9, 8, 0.7);
@@ -596,7 +592,7 @@ body:has(.vb.v2) {
   font-weight: 500;
 }
 .header.v2 .header-nav a {
-  color: var(--shift-fg, var(--vb-text));
+  color: var(--vb-text) !important;
   position: relative;
   padding: 4px 0;
   transition: color 0.4s ease;
@@ -627,7 +623,7 @@ body:has(.vb.v2) {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--shift-fg, var(--vb-text));
+  color: var(--vb-text) !important;
   padding: 0.4rem 0.8rem;
   border: 1px solid var(--vb-line);
   border-radius: 999px;
@@ -754,7 +750,8 @@ body:has(.vb.v2) {
 /* Scroll Video Hero */
 .scroll-video-hero {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 80px);
+  margin-top: 80px;
   overflow: hidden;
 }
 .scroll-video-sticky {
@@ -2512,7 +2509,7 @@ body:has(.vb.v2) {
 }
 
 @media (max-width: 768px) {
-  .scroll-video-hero { height: 60vh; }
+  .scroll-video-hero { height: calc(60vh - 80px); }
   .header.v2 .header-nav { display: none; }
   .header.v2 .header-actions .lang-switcher { display: none; }
   .vb-hero-h1 .line-2 { margin-left: 0.5em; }
