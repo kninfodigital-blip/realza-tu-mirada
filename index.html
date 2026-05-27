@@ -309,6 +309,57 @@ a { color: inherit; text-decoration: none; }
 }
 .top-bar-icons a:hover,
 .top-bar-icons button:hover { opacity: 0.5; }
+.top-bar-cart {
+  display: inline-flex;
+  color: #1A1612;
+  cursor: default;
+}
+.top-bar-lang {
+  position: relative;
+  display: inline-flex;
+}
+.top-bar-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: none;
+  border: none;
+  color: #1A1612;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s ease;
+}
+.top-bar-lang-btn:hover { opacity: 0.5; }
+.top-bar-lang-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: #FFFFFF;
+  border: 1px solid #1A1612;
+  min-width: 120px;
+  z-index: 200;
+  flex-direction: column;
+}
+.top-bar-lang-dropdown.open { display: flex; }
+.top-bar-lang-dropdown button {
+  background: none;
+  border: none;
+  padding: 0.5rem 0.8rem;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #1A1612;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: background 0.2s ease;
+}
+.top-bar-lang-dropdown button:hover { background: #f5f0eb; }
+.top-bar-lang-dropdown button.active { font-weight: 700; }
 
 @media (max-width: 768px) {
   .top-bar { height: 30px; }
@@ -2656,34 +2707,31 @@ body:has(.vb.v2) {
       <span class="top-bar-name">Realza Tu Mirada</span>
     </div>
     <div class="top-bar-icons">
-      <!-- Buscar -->
-      <a href="#" aria-label="Buscar">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-      </a>
       <!-- Email -->
-      <a href="mailto:info@realzatumirada.com" aria-label="Email">
+      <a href="mailto:realzatumirada20@gmail.com" aria-label="Email">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
       </a>
-      <!-- Ayuda -->
-      <a href="#" aria-label="Ayuda">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 115.12 2.13c-.58.49-1.12 1.07-1.12 1.87v1"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg>
+      <!-- Ubicación -->
+      <a href="https://maps.apple.com/place?address=Avinguda%20Carlemany,%2070,%20AD700%20Escaldes-Engordany,%20Andorra&coordinate=42.508664,1.535041&name=Realza%20Tu%20Mirada&place-id=IABF732F31EE991C8&map=explore" target="_blank" rel="noopener" aria-label="Ubicaci&oacute;n">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
       </a>
-      <!-- Idioma -->
-      <a href="#" aria-label="Idioma">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
-      </a>
-      <!-- Usuario -->
-      <a href="#" aria-label="Mi cuenta">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0112 0v1"/></svg>
-      </a>
-      <!-- Favoritos -->
-      <a href="#" aria-label="Favoritos">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
-      </a>
-      <!-- Carrito -->
-      <a href="#" aria-label="Carrito">
+      <!-- Selector idioma -->
+      <div class="top-bar-lang" id="langSwitcher">
+        <button class="top-bar-lang-btn" id="langToggle" aria-label="Idioma">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+          <span id="langCurrent">ES</span>
+        </button>
+        <div class="top-bar-lang-dropdown" id="langDropdown">
+          <button data-lang="es" class="active">Espa&ntilde;ol</button>
+          <button data-lang="ca">Catal&agrave;</button>
+          <button data-lang="en">English</button>
+          <button data-lang="fr">Fran&ccedil;ais</button>
+        </div>
+      </div>
+      <!-- Carrito (sin enlace) -->
+      <span class="top-bar-cart" aria-label="Tienda">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-      </a>
+      </span>
     </div>
   </div>
 </div>
@@ -2695,10 +2743,10 @@ body:has(.vb.v2) {
     </a>
 
     <nav class="header-nav">
-      <a href="#servicios">Servicios</a>
-      <a href="#serum">S&eacute;rum</a>
-      <a href="#formacion">Formaci&oacute;n</a>
-      <a href="#nosotros">Nosotros</a>
+      <a href="#servicios" data-i18n="nav-services">Servicios</a>
+      <a href="#serum" data-i18n="nav-serum">S&eacute;rum</a>
+      <a href="#formacion" data-i18n="nav-training">Formaci&oacute;n</a>
+      <a href="#nosotros" data-i18n="nav-about">Nosotros</a>
     </nav>
   </div>
 </header>
@@ -2706,7 +2754,7 @@ body:has(.vb.v2) {
 <!-- STICKY RESERVE -->
 <a href="#reservar" class="sticky-reserve" id="sticky-reserve">
   <span class="dot"></span>
-  <span class="lbl">Reservar cita</span>
+  <span class="lbl" data-i18n="sticky-reserve">Reservar cita</span>
   <span class="arrow">&rarr;</span>
 </a>
 
@@ -2730,7 +2778,7 @@ body:has(.vb.v2) {
 <!-- MARQUEE                                                        -->
 <!-- ============================================================= -->
 <div class="vb-marquee" aria-hidden="true">
-  <div class="vb-marquee-track">
+  <div class="vb-marquee-track" data-i18n-html="marquee-track">
     <span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum para pesta&ntilde;as</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum para pesta&ntilde;as</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pesta&ntilde;as</span><span class="sep">&#10038;</span><span>S&eacute;rum para pesta&ntilde;as</span><span class="sep">&#10038;</span><span>Dise&ntilde;o de mirada</span><span class="sep">&#10038;</span><span>Formaci&oacute;n profesional</span><span class="sep">&#10038;</span><span>Extensiones cl&aacute;sicas</span><span class="sep">&#10038;</span>
   </div>
 </div>
@@ -2741,17 +2789,17 @@ body:has(.vb.v2) {
 <section class="vb-manifest" id="manifest" data-shift="manifest">
   <div class="vb-manifest-sticky">
     <div class="container">
-      <div class="reveal"><div class="vb-eyebrow">&mdash; Manifiesto</div></div>
+      <div class="reveal"><div class="vb-eyebrow" data-i18n="manifest-eyebrow">&mdash; Manifiesto</div></div>
       <p class="vb-manifest-text">
-        <span class="vb-frag">El cuidado</span>
-        <span class="vb-frag">no es</span>
-        <span class="vb-frag">un extra,</span>
-        <span class="vb-frag gold">es parte</span>
-        <span class="vb-frag">de tu</span>
-        <span class="vb-frag ital gold">rutina.</span>
+        <span class="vb-frag" data-i18n="manifest-1">El cuidado</span>
+        <span class="vb-frag" data-i18n="manifest-2">no es</span>
+        <span class="vb-frag" data-i18n="manifest-3">un extra,</span>
+        <span class="vb-frag gold" data-i18n="manifest-4">es parte</span>
+        <span class="vb-frag" data-i18n="manifest-5">de tu</span>
+        <span class="vb-frag ital gold" data-i18n="manifest-6">rutina.</span>
       </p>
       <div class="reveal" style="transition-delay:0.3s">
-        <div class="vb-manifest-sig">&mdash; J&amp;S, fundadores</div>
+        <div class="vb-manifest-sig" data-i18n="manifest-sig">&mdash; J&amp;S, fundadores</div>
       </div>
     </div>
     <div class="vb-manifest-progress">
@@ -2766,9 +2814,9 @@ body:has(.vb.v2) {
 <section class="vb-services" id="servicios" data-shift="services">
   <div class="container">
     <div class="reveal vb-section-head">
-      <div class="vb-eyebrow">&mdash; El cat&aacute;logo</div>
-      <h2 class="vb-section-h">Cuatro cap&iacute;tulos<br /><span class="ital">de mirada.</span></h2>
-      <p class="vb-section-sub">Cada cita es una conversaci&oacute;n con tu rostro antes de poner las manos. Esto es lo que ofrecemos.</p>
+      <div class="vb-eyebrow" data-i18n="svc-eyebrow">&mdash; El cat&aacute;logo</div>
+      <h2 class="vb-section-h" data-i18n-html="svc-title">Cuatro cap&iacute;tulos<br /><span class="ital">de mirada.</span></h2>
+      <p class="vb-section-sub" data-i18n="svc-sub">Cada cita es una conversaci&oacute;n con tu rostro antes de poner las manos. Esto es lo que ofrecemos.</p>
     </div>
 
     <!-- Service I -->
@@ -2779,17 +2827,17 @@ body:has(.vb.v2) {
         <span class="vb-chapter-corner-tag">60 min</span>
       </div>
       <div class="vb-chapter-text">
-        <div class="vb-chapter-micro"><span class="dot"></span>Cap&iacute;tulo uno &middot; I</div>
-        <h3 class="vb-chapter-h">Laminado <span class="ital">de cejas.</span></h3>
-        <p class="vb-chapter-desc">Disciplinamos cada pelo con respeto a su nacimiento. M&aacute;s forma, m&aacute;s orden, m&aacute;s definici&oacute;n &mdash; sin que pierdas esa textura natural que solo tu rostro tiene.</p>
+        <div class="vb-chapter-micro"><span class="dot"></span><span data-i18n="svc1-micro">Cap&iacute;tulo uno &middot; I</span></div>
+        <h3 class="vb-chapter-h" data-i18n-html="svc1-title">Laminado <span class="ital">de cejas.</span></h3>
+        <p class="vb-chapter-desc" data-i18n="svc1-desc">Disciplinamos cada pelo con respeto a su nacimiento. M&aacute;s forma, m&aacute;s orden, m&aacute;s definici&oacute;n &mdash; sin que pierdas esa textura natural que solo tu rostro tiene.</p>
         <ul class="vb-chapter-bullets">
-          <li><span class="b-mark">&#10038;</span>Dura 5&ndash;8 semanas</li>
-          <li><span class="b-mark">&#10038;</span>Dise&ntilde;o personalizado</li>
-          <li><span class="b-mark">&#10038;</span>Cejas finas o pobladas</li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc1-bullet1">Dura 5&ndash;8 semanas</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc1-bullet2">Dise&ntilde;o personalizado</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc1-bullet3">Cejas finas o pobladas</span></li>
         </ul>
         <div class="vb-chapter-actions">
-          <a href="#reservar" class="btn btn-primary">Reservar<span class="arrow">&rarr;</span></a>
-          <a href="#" class="link-arrow">Ver detalle <span class="arrow">&rarr;</span></a>
+          <a href="#reservar" class="btn btn-primary"><span data-i18n="btn-reservar">Reservar</span><span class="arrow">&rarr;</span></a>
+          <a href="#" class="link-arrow"><span data-i18n="btn-detail">Ver detalle</span> <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -2802,17 +2850,17 @@ body:has(.vb.v2) {
         <span class="vb-chapter-corner-tag">75 min</span>
       </div>
       <div class="vb-chapter-text">
-        <div class="vb-chapter-micro"><span class="dot"></span>Cap&iacute;tulo dos &middot; II</div>
-        <h3 class="vb-chapter-h">Lifting <span class="ital">de pesta&ntilde;as.</span></h3>
-        <p class="vb-chapter-desc">Levantamos tus pesta&ntilde;as desde la ra&iacute;z para crear una curva natural que abre toda la mirada. Resultado limpio que dura casi dos meses, sin maquillaje.</p>
+        <div class="vb-chapter-micro"><span class="dot"></span><span data-i18n="svc2-micro">Cap&iacute;tulo dos &middot; II</span></div>
+        <h3 class="vb-chapter-h" data-i18n-html="svc2-title">Lifting <span class="ital">de pesta&ntilde;as.</span></h3>
+        <p class="vb-chapter-desc" data-i18n="svc2-desc">Levantamos tus pesta&ntilde;as desde la ra&iacute;z para crear una curva natural que abre toda la mirada. Resultado limpio que dura casi dos meses, sin maquillaje.</p>
         <ul class="vb-chapter-bullets">
-          <li><span class="b-mark">&#10038;</span>Resultado al instante</li>
-          <li><span class="b-mark">&#10038;</span>Hasta 7 semanas</li>
-          <li><span class="b-mark">&#10038;</span>Apto con s&eacute;rum</li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc2-bullet1">Resultado al instante</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc2-bullet2">Hasta 7 semanas</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc2-bullet3">Apto con s&eacute;rum</span></li>
         </ul>
         <div class="vb-chapter-actions">
-          <a href="#reservar" class="btn btn-primary">Reservar<span class="arrow">&rarr;</span></a>
-          <a href="#" class="link-arrow">Ver detalle <span class="arrow">&rarr;</span></a>
+          <a href="#reservar" class="btn btn-primary"><span data-i18n="btn-reservar">Reservar</span><span class="arrow">&rarr;</span></a>
+          <a href="#" class="link-arrow"><span data-i18n="btn-detail">Ver detalle</span> <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -2825,17 +2873,17 @@ body:has(.vb.v2) {
         <span class="vb-chapter-corner-tag">120 min</span>
       </div>
       <div class="vb-chapter-text">
-        <div class="vb-chapter-micro"><span class="dot"></span>Cap&iacute;tulo tres &middot; III</div>
-        <h3 class="vb-chapter-h">Extensiones <span class="ital">cl&aacute;sicas.</span></h3>
-        <p class="vb-chapter-desc">Pelo a pelo, mapeadas a la forma de tus ojos. Volumen real que se siente tuyo desde el primer parpadeo, no postizo ni estridente.</p>
+        <div class="vb-chapter-micro"><span class="dot"></span><span data-i18n="svc3-micro">Cap&iacute;tulo tres &middot; III</span></div>
+        <h3 class="vb-chapter-h" data-i18n-html="svc3-title">Extensiones <span class="ital">cl&aacute;sicas.</span></h3>
+        <p class="vb-chapter-desc" data-i18n="svc3-desc">Pelo a pelo, mapeadas a la forma de tus ojos. Volumen real que se siente tuyo desde el primer parpadeo, no postizo ni estridente.</p>
         <ul class="vb-chapter-bullets">
-          <li><span class="b-mark">&#10038;</span>Sesi&oacute;n inicial 2 h</li>
-          <li><span class="b-mark">&#10038;</span>Retoque cada 3 sem.</li>
-          <li><span class="b-mark">&#10038;</span>Adhesivo hipoalerg&eacute;nico</li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc3-bullet1">Sesi&oacute;n inicial 2 h</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc3-bullet2">Retoque cada 3 sem.</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc3-bullet3">Adhesivo hipoalerg&eacute;nico</span></li>
         </ul>
         <div class="vb-chapter-actions">
-          <a href="#reservar" class="btn btn-primary">Reservar<span class="arrow">&rarr;</span></a>
-          <a href="#" class="link-arrow">Ver detalle <span class="arrow">&rarr;</span></a>
+          <a href="#reservar" class="btn btn-primary"><span data-i18n="btn-reservar">Reservar</span><span class="arrow">&rarr;</span></a>
+          <a href="#" class="link-arrow"><span data-i18n="btn-detail">Ver detalle</span> <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -2848,17 +2896,17 @@ body:has(.vb.v2) {
         <span class="vb-chapter-corner-tag">90 min</span>
       </div>
       <div class="vb-chapter-text">
-        <div class="vb-chapter-micro"><span class="dot"></span>Cap&iacute;tulo cuatro &middot; IV</div>
-        <h3 class="vb-chapter-h">Dise&ntilde;o <span class="ital">de mirada.</span></h3>
-        <p class="vb-chapter-desc">Un estudio sin prisa de tu rostro, proporci&oacute;n y rasgos para dise&ntilde;ar la combinaci&oacute;n de servicios que m&aacute;s te favorece. Pensado solo para ti.</p>
+        <div class="vb-chapter-micro"><span class="dot"></span><span data-i18n="svc4-micro">Cap&iacute;tulo cuatro &middot; IV</span></div>
+        <h3 class="vb-chapter-h" data-i18n-html="svc4-title">Dise&ntilde;o <span class="ital">de mirada.</span></h3>
+        <p class="vb-chapter-desc" data-i18n="svc4-desc">Un estudio sin prisa de tu rostro, proporci&oacute;n y rasgos para dise&ntilde;ar la combinaci&oacute;n de servicios que m&aacute;s te favorece. Pensado solo para ti.</p>
         <ul class="vb-chapter-bullets">
-          <li><span class="b-mark">&#10038;</span>1 h de consulta</li>
-          <li><span class="b-mark">&#10038;</span>Mapeado fotogr&aacute;fico</li>
-          <li><span class="b-mark">&#10038;</span>Plan a 3 meses</li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc4-bullet1">1 h de consulta</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc4-bullet2">Mapeado fotogr&aacute;fico</span></li>
+          <li><span class="b-mark">&#10038;</span><span data-i18n="svc4-bullet3">Plan a 3 meses</span></li>
         </ul>
         <div class="vb-chapter-actions">
-          <a href="#reservar" class="btn btn-primary">Reservar<span class="arrow">&rarr;</span></a>
-          <a href="#" class="link-arrow">Ver detalle <span class="arrow">&rarr;</span></a>
+          <a href="#reservar" class="btn btn-primary"><span data-i18n="btn-reservar">Reservar</span><span class="arrow">&rarr;</span></a>
+          <a href="#" class="link-arrow"><span data-i18n="btn-detail">Ver detalle</span> <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -2870,8 +2918,8 @@ body:has(.vb.v2) {
 <!-- ============================================================= -->
 <section class="vb-serum" id="serum" data-shift="serum">
   <div class="vb-serum-bigtype" aria-hidden="true">
-    <span class="t1">S&Eacute;RUM</span>
-    <span class="t2">para pesta&ntilde;as</span>
+    <span class="t1" data-i18n="serum-big1">S&Eacute;RUM</span>
+    <span class="t2" data-i18n="serum-big2">para pesta&ntilde;as</span>
   </div>
 
   <div class="container vb-serum-grid">
@@ -2899,30 +2947,30 @@ body:has(.vb.v2) {
     </div>
 
     <div class="vb-serum-text">
-      <div class="reveal"><div class="vb-eyebrow">&mdash; Producto estrella</div></div>
+      <div class="reveal"><div class="vb-eyebrow" data-i18n="serum-eyebrow">&mdash; Producto estrella</div></div>
       <h2 class="vb-serum-h">
-        <span>Un s&eacute;rum</span>
-        <span class="ital">&uacute;nico.</span>
+        <span data-i18n="serum-h1">Un s&eacute;rum</span>
+        <span class="ital" data-i18n="serum-h2">&uacute;nico.</span>
       </h2>
       <div class="reveal" style="transition-delay:0.15s">
-        <p class="vb-serum-lead">Una f&oacute;rmula que pensamos y probamos durante a&ntilde;os en el estudio. Aplicaci&oacute;n nocturna, resultados visibles en seis semanas.</p>
+        <p class="vb-serum-lead" data-i18n="serum-lead">Una f&oacute;rmula que pensamos y probamos durante a&ntilde;os en el estudio. Aplicaci&oacute;n nocturna, resultados visibles en seis semanas.</p>
       </div>
       <div class="reveal" style="transition-delay:0.25s">
         <div class="vb-serum-features">
-          <div class="f"><span class="ic">&#127793;</span><span>Vegano</span></div>
-          <div class="f"><span class="ic">&#10038;</span><span>Sin crueldad</span></div>
-          <div class="f"><span class="ic">&#9851;</span><span>100% natural</span></div>
-          <div class="f"><span class="ic">&#9680;</span><span>Compatible con extensiones</span></div>
+          <div class="f"><span class="ic">&#127793;</span><span data-i18n="serum-f1">Vegano</span></div>
+          <div class="f"><span class="ic">&#10038;</span><span data-i18n="serum-f2">Sin crueldad</span></div>
+          <div class="f"><span class="ic">&#9851;</span><span data-i18n="serum-f3">100% natural</span></div>
+          <div class="f"><span class="ic">&#9680;</span><span data-i18n="serum-f4">Compatible con extensiones</span></div>
         </div>
       </div>
       <div class="reveal" style="transition-delay:0.35s">
         <div class="vb-serum-actions">
-          <a class="btn btn-primary" href="#">A&ntilde;adir al carrito<span class="arrow">&rarr;</span></a>
-          <a class="link-arrow" href="#ingredientes">Ver f&oacute;rmula completa <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-primary" href="#"><span data-i18n="serum-cart">A&ntilde;adir al carrito</span><span class="arrow">&rarr;</span></a>
+          <a class="link-arrow" href="#ingredientes"><span data-i18n="serum-formula-link">Ver f&oacute;rmula completa</span> <span class="arrow">&rarr;</span></a>
         </div>
       </div>
       <div class="reveal" style="transition-delay:0.45s">
-        <p class="vb-serum-trust">&#9733;&#9733;&#9733;&#9733;&#9733;  <em>4.9 / 5</em> &middot; 247 rese&ntilde;as verificadas</p>
+        <p class="vb-serum-trust">&#9733;&#9733;&#9733;&#9733;&#9733;  <em>4.9 / 5</em> &middot; <span data-i18n="serum-reviews">247 rese&ntilde;as verificadas</span></p>
       </div>
     </div>
   </div>
@@ -2934,88 +2982,88 @@ body:has(.vb.v2) {
 <section class="vb-booking" id="reservar" data-shift="booking">
   <div class="container">
     <div class="reveal vb-section-head">
-      <div class="vb-eyebrow">&mdash; Reserva tu cita</div>
-      <h2 class="vb-section-h">En tres pasos,<br/><span class="ital">a tu mirada.</span></h2>
+      <div class="vb-eyebrow" data-i18n="book-eyebrow">&mdash; Reserva tu cita</div>
+      <h2 class="vb-section-h" data-i18n-html="book-title">En tres pasos,<br/><span class="ital">a tu mirada.</span></h2>
     </div>
 
     <div class="reveal vb-booking-shell">
       <div class="vb-booking-steps">
         <div class="step active" id="step-ind-1">
           <span class="step-num">01</span>
-          <span class="step-lbl">Servicio</span>
+          <span class="step-lbl" data-i18n="book-step1">Servicio</span>
         </div>
         <span class="step-line"></span>
         <div class="step" id="step-ind-2">
           <span class="step-num">02</span>
-          <span class="step-lbl">Fecha y hora</span>
+          <span class="step-lbl" data-i18n="book-step2">Fecha y hora</span>
         </div>
         <span class="step-line"></span>
         <div class="step" id="step-ind-3">
           <span class="step-num">03</span>
-          <span class="step-lbl">Confirmar</span>
+          <span class="step-lbl" data-i18n="book-step3">Confirmar</span>
         </div>
       </div>
 
       <div class="vb-booking-panel">
         <!-- STEP 1 -->
         <div class="vb-booking-pane" id="booking-step-1">
-          <div class="vb-booking-pane-h">&iquest;Qu&eacute; te apetece hoy?</div>
+          <div class="vb-booking-pane-h" data-i18n="book-pane1-h">&iquest;Qu&eacute; te apetece hoy?</div>
           <div class="vb-booking-services-grid">
             <button type="button" class="vb-booking-svc" data-svc="laminado">
-              <span class="t">Laminado de cejas</span>
-              <span class="d">60 min &middot; Consulta</span>
+              <span class="t" data-i18n="book-svc1-t">Laminado de cejas</span>
+              <span class="d" data-i18n="book-svc1-d">60 min &middot; Consulta</span>
             </button>
             <button type="button" class="vb-booking-svc" data-svc="lifting">
-              <span class="t">Lifting de pesta&ntilde;as</span>
-              <span class="d">75 min &middot; Consulta</span>
+              <span class="t" data-i18n="book-svc2-t">Lifting de pesta&ntilde;as</span>
+              <span class="d" data-i18n="book-svc2-d">75 min &middot; Consulta</span>
             </button>
             <button type="button" class="vb-booking-svc" data-svc="extensiones">
-              <span class="t">Extensiones cl&aacute;sicas</span>
-              <span class="d">120 min &middot; Consulta</span>
+              <span class="t" data-i18n="book-svc3-t">Extensiones cl&aacute;sicas</span>
+              <span class="d" data-i18n="book-svc3-d">120 min &middot; Consulta</span>
             </button>
             <button type="button" class="vb-booking-svc" data-svc="diseno">
-              <span class="t">Dise&ntilde;o de mirada</span>
-              <span class="d">90 min &middot; Consulta</span>
+              <span class="t" data-i18n="book-svc4-t">Dise&ntilde;o de mirada</span>
+              <span class="d" data-i18n="book-svc4-d">90 min &middot; Consulta</span>
             </button>
           </div>
           <div class="vb-booking-foot">
             <span></span>
-            <button class="btn btn-primary" id="booking-next-1" disabled>Siguiente <span class="arrow">&rarr;</span></button>
+            <button class="btn btn-primary" id="booking-next-1" disabled><span data-i18n="btn-next">Siguiente</span> <span class="arrow">&rarr;</span></button>
           </div>
         </div>
 
         <!-- STEP 2 -->
         <div class="vb-booking-pane" id="booking-step-2" style="display:none">
-          <div class="vb-booking-pane-h">Elige el d&iacute;a</div>
+          <div class="vb-booking-pane-h" data-i18n="book-pane2-h1">Elige el d&iacute;a</div>
           <div class="vb-booking-days" id="booking-days"></div>
-          <div class="vb-booking-pane-h" style="margin-top:2rem">Elige la hora</div>
+          <div class="vb-booking-pane-h" style="margin-top:2rem" data-i18n="book-pane2-h2">Elige la hora</div>
           <div class="vb-booking-times" id="booking-times"></div>
           <div class="vb-booking-foot">
-            <button class="link-arrow" id="booking-back-2"><span class="arrow rev">&larr;</span> Atr&aacute;s</button>
-            <button class="btn btn-primary" id="booking-next-2" disabled>Siguiente <span class="arrow">&rarr;</span></button>
+            <button class="link-arrow" id="booking-back-2"><span class="arrow rev">&larr;</span> <span data-i18n="btn-back">Atr&aacute;s</span></button>
+            <button class="btn btn-primary" id="booking-next-2" disabled><span data-i18n="btn-next">Siguiente</span> <span class="arrow">&rarr;</span></button>
           </div>
         </div>
 
         <!-- STEP 3 -->
         <div class="vb-booking-pane" id="booking-step-3" style="display:none">
-          <div class="vb-booking-pane-h">Confirma tu cita</div>
+          <div class="vb-booking-pane-h" data-i18n="book-pane3-h">Confirma tu cita</div>
           <div class="vb-booking-summary">
-            <div class="row"><span class="lbl">Servicio</span><span class="val" id="sum-service"></span></div>
-            <div class="row"><span class="lbl">Fecha</span><span class="val" id="sum-date"></span></div>
-            <div class="row"><span class="lbl">Hora</span><span class="val" id="sum-time"></span></div>
-            <div class="row"><span class="lbl">Estudio</span><span class="val">Av. Carlemany 73, 2-A &middot; Escaldes-Engordany</span></div>
+            <div class="row"><span class="lbl" data-i18n="book-lbl-service">Servicio</span><span class="val" id="sum-service"></span></div>
+            <div class="row"><span class="lbl" data-i18n="book-lbl-date">Fecha</span><span class="val" id="sum-date"></span></div>
+            <div class="row"><span class="lbl" data-i18n="book-lbl-time">Hora</span><span class="val" id="sum-time"></span></div>
+            <div class="row"><span class="lbl" data-i18n="book-lbl-studio">Estudio</span><span class="val">Av. Carlemany 73, 2-A &middot; Escaldes-Engordany</span></div>
           </div>
           <div class="vb-booking-form">
-            <div class="vb-booking-field"><label>Nombre</label><input type="text" placeholder="Tu nombre completo" /></div>
-            <div class="vb-booking-field"><label>Email</label><input type="email" placeholder="tu@correo.com" /></div>
-            <div class="vb-booking-field"><label>Tel&eacute;fono</label><input type="tel" placeholder="+376 ..." /></div>
-            <div class="vb-booking-field full"><label>Notas (opcional)</label><textarea rows="3" placeholder="Alergias, primera vez, cualquier cosa&hellip;"></textarea></div>
+            <div class="vb-booking-field"><label data-i18n="book-lbl-name">Nombre</label><input type="text" placeholder="Tu nombre completo" data-i18n-placeholder="book-ph-name" /></div>
+            <div class="vb-booking-field"><label>Email</label><input type="email" placeholder="tu@correo.com" data-i18n-placeholder="book-ph-email" /></div>
+            <div class="vb-booking-field"><label data-i18n="book-lbl-phone">Tel&eacute;fono</label><input type="tel" placeholder="+376 ..." /></div>
+            <div class="vb-booking-field full"><label data-i18n="book-lbl-notes">Notas (opcional)</label><textarea rows="3" placeholder="Alergias, primera vez, cualquier cosa&hellip;" data-i18n-placeholder="book-ph-notes"></textarea></div>
           </div>
           <div class="vb-booking-foot">
-            <button class="link-arrow" id="booking-back-3"><span class="arrow rev">&larr;</span> Atr&aacute;s</button>
-            <button class="btn btn-primary">Confirmar cita <span class="arrow">&rarr;</span></button>
+            <button class="link-arrow" id="booking-back-3"><span class="arrow rev">&larr;</span> <span data-i18n="btn-back">Atr&aacute;s</span></button>
+            <button class="btn btn-primary"><span data-i18n="btn-confirm">Confirmar cita</span> <span class="arrow">&rarr;</span></button>
           </div>
-          <p class="vb-booking-tiny">Al reservar, recibir&aacute;s un correo de confirmaci&oacute;n y un recordatorio 24 h antes.</p>
+          <p class="vb-booking-tiny" data-i18n="book-disclaimer">Al reservar, recibir&aacute;s un correo de confirmaci&oacute;n y un recordatorio 24 h antes.</p>
         </div>
       </div>
     </div>
@@ -3028,8 +3076,8 @@ body:has(.vb.v2) {
 <section class="vb-ingredients" id="ingredientes" data-shift="ingred">
   <div class="container">
     <div class="reveal vb-section-head light">
-      <div class="vb-eyebrow gold">&mdash; La f&oacute;rmula</div>
-      <h2 class="vb-section-h light">Seis ingredientes,<br /><span class="ital gold">una sola promesa.</span></h2>
+      <div class="vb-eyebrow gold" data-i18n="ingr-eyebrow">&mdash; La f&oacute;rmula</div>
+      <h2 class="vb-section-h light" data-i18n-html="ingr-title">Seis ingredientes,<br /><span class="ital gold">una sola promesa.</span></h2>
     </div>
 
     <div class="vb-orbit">
@@ -3051,38 +3099,38 @@ body:has(.vb.v2) {
       <!-- Nodes -->
       <div class="vb-orbit-node" style="left:50%;top:92%">
         <div class="dot"></div>
-        <h4>P&eacute;ptido de biotina</h4>
-        <p>Crecimiento y fuerza.</p>
+        <h4 data-i18n="ingr1-h">P&eacute;ptido de biotina</h4>
+        <p data-i18n="ingr1-p">Crecimiento y fuerza.</p>
       </div>
       <div class="vb-orbit-node" style="left:86.3%;top:71%">
         <div class="dot"></div>
         <h4>Pentap&eacute;ptido-17</h4>
-        <p>Estimula la queratina.</p>
+        <p data-i18n="ingr2-p">Estimula la queratina.</p>
       </div>
       <div class="vb-orbit-node" style="left:86.3%;top:29%">
         <div class="dot"></div>
         <h4>Ginseng</h4>
-        <p>Activa el fol&iacute;culo.</p>
+        <p data-i18n="ingr3-p">Activa el fol&iacute;culo.</p>
       </div>
       <div class="vb-orbit-node" style="left:50%;top:8%">
         <div class="dot"></div>
         <h4>Vitamina B5</h4>
-        <p>Acondiciona la fibra.</p>
+        <p data-i18n="ingr4-p">Acondiciona la fibra.</p>
       </div>
       <div class="vb-orbit-node" style="left:13.6%;top:29%">
         <div class="dot"></div>
-        <h4>&Aacute;cido hialur&oacute;nico</h4>
-        <p>Hidrataci&oacute;n profunda.</p>
+        <h4 data-i18n="ingr5-h">&Aacute;cido hialur&oacute;nico</h4>
+        <p data-i18n="ingr5-p">Hidrataci&oacute;n profunda.</p>
       </div>
       <div class="vb-orbit-node" style="left:13.6%;top:71%">
         <div class="dot"></div>
         <h4>Vitamina E</h4>
-        <p>Antioxidante natural.</p>
+        <p data-i18n="ingr6-p">Antioxidante natural.</p>
       </div>
     </div>
 
     <div class="vb-ingredients-foot">
-      <a href="#" class="link-arrow" style="color:#FFC58A">Ver INCI completo <span class="arrow">&rarr;</span></a>
+      <a href="#" class="link-arrow" style="color:#FFC58A"><span data-i18n="ingr-link">Ver INCI completo</span> <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -3094,10 +3142,10 @@ body:has(.vb.v2) {
   <div class="container">
     <div class="reveal vb-gallery-head">
       <div>
-        <div class="vb-eyebrow">&mdash; Trabajos del estudio</div>
-        <h2 class="vb-section-h" style="margin-top:1rem">Resultados<br/><span class="ital">que hablan.</span></h2>
+        <div class="vb-eyebrow" data-i18n="gallery-eyebrow">&mdash; Trabajos del estudio</div>
+        <h2 class="vb-section-h" style="margin-top:1rem" data-i18n-html="gallery-title">Resultados<br/><span class="ital">que hablan.</span></h2>
       </div>
-      <p class="vb-section-sub" style="max-width:34ch">Una colecci&oacute;n viva de lo que hacemos cada semana en el estudio. Sin retoques ni filtros que escondan la piel real.</p>
+      <p class="vb-section-sub" style="max-width:34ch" data-i18n="gallery-sub">Una colecci&oacute;n viva de lo que hacemos cada semana en el estudio. Sin retoques ni filtros que escondan la piel real.</p>
     </div>
 
     <div class="vb-gallery-spread">
@@ -3111,7 +3159,7 @@ body:has(.vb.v2) {
     </div>
 
     <div class="vb-gallery-foot">
-      <a href="#" class="link-arrow">Ver galer&iacute;a completa <span class="arrow">&rarr;</span></a>
+      <a href="#" class="link-arrow"><span data-i18n="gallery-link">Ver galer&iacute;a completa</span> <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -3127,30 +3175,30 @@ body:has(.vb.v2) {
       <span class="vb-duo-caption">J&amp;S &middot; 2026</span>
     </div>
     <div class="vb-duo-text">
-      <div class="reveal"><div class="vb-eyebrow">&mdash; Los fundadores</div></div>
+      <div class="reveal"><div class="vb-eyebrow" data-i18n="duo-eyebrow">&mdash; Los fundadores</div></div>
       <h2 class="vb-duo-h">
         <span class="n1">Jonathan</span>
         <span class="n2"><span class="ital">&amp;</span> Stephany</span>
       </h2>
       <div class="reveal" style="transition-delay:0.15s">
-        <p class="vb-duo-lead">Somos la pareja y el coraz&oacute;n detr&aacute;s de Realza tu Mirada. Este proyecto naci&oacute; de la pasi&oacute;n compartida por el detalle, el cuidado y la mirada bien hecha.</p>
+        <p class="vb-duo-lead" data-i18n="duo-lead">Somos la pareja y el coraz&oacute;n detr&aacute;s de Realza tu Mirada. Este proyecto naci&oacute; de la pasi&oacute;n compartida por el detalle, el cuidado y la mirada bien hecha.</p>
       </div>
       <div class="reveal" style="transition-delay:0.25s">
         <div class="vb-duo-quotes">
           <div class="q">
             <div class="role">Jonathan</div>
-            <p>&laquo;El detalle no se ve, se siente. Por eso volv&eacute;is.&raquo;</p>
+            <p data-i18n="duo-quote1">&laquo;El detalle no se ve, se siente. Por eso volv&eacute;is.&raquo;</p>
           </div>
           <div class="q">
             <div class="role">Stephany</div>
-            <p>&laquo;Una buena ceja te ordena toda la cara. Eso lo sabemos.&raquo;</p>
+            <p data-i18n="duo-quote2">&laquo;Una buena ceja te ordena toda la cara. Eso lo sabemos.&raquo;</p>
           </div>
         </div>
       </div>
       <div class="reveal" style="transition-delay:0.35s">
         <div class="vb-duo-actions">
-          <a href="#" class="link-arrow">Nuestra historia <span class="arrow">&rarr;</span></a>
-          <a href="#formacion" class="link-arrow">Ense&ntilde;amos lo que hacemos <span class="arrow">&rarr;</span></a>
+          <a href="#" class="link-arrow"><span data-i18n="duo-link1">Nuestra historia</span> <span class="arrow">&rarr;</span></a>
+          <a href="#formacion" class="link-arrow"><span data-i18n="duo-link2">Ense&ntilde;amos lo que hacemos</span> <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -3169,26 +3217,26 @@ body:has(.vb.v2) {
       <div class="reveal">
         <div class="vb-training-pill">
           <span class="dot"></span>
-          Formaci&oacute;n presencial &middot; Andorra &middot; <strong>Pr&oacute;xima convocatoria: [FECHA]</strong>
+          <span data-i18n-html="train-pill">Formaci&oacute;n presencial &middot; Andorra &middot; <strong>Pr&oacute;xima convocatoria: [FECHA]</strong></span>
         </div>
       </div>
 
       <div class="vb-training-neon-wrap">
         <div class="reveal" style="transition-delay:0.2s"><div class="vb-training-arch"></div></div>
-        <div class="reveal" style="transition-delay:0.3s"><h2 class="vb-training-neon">Realza Miradas</h2></div>
-        <div class="reveal" style="transition-delay:0.4s"><h3 class="vb-training-sub">desde <span class="ital">cero.</span></h3></div>
+        <div class="reveal" style="transition-delay:0.3s"><h2 class="vb-training-neon" data-i18n="train-neon">Realza Miradas</h2></div>
+        <div class="reveal" style="transition-delay:0.4s"><h3 class="vb-training-sub" data-i18n-html="train-sub">desde <span class="ital">cero.</span></h3></div>
       </div>
 
       <div class="reveal" style="transition-delay:0.5s">
-        <p class="vb-training-lead">Dos d&iacute;as intensivos, modelo real y un kit profesional que te llevas a casa. Una formaci&oacute;n pensada para quien empieza con ganas de hacer las cosas bien, sin atajos.</p>
+        <p class="vb-training-lead" data-i18n="train-lead">Dos d&iacute;as intensivos, modelo real y un kit profesional que te llevas a casa. Una formaci&oacute;n pensada para quien empieza con ganas de hacer las cosas bien, sin atajos.</p>
       </div>
 
       <div class="reveal" style="transition-delay:0.6s">
         <div class="vb-training-stats">
-          <div class="stat"><span class="n">02</span><span class="l">d&iacute;as intensivos</span></div>
-          <div class="stat"><span class="n">04</span><span class="l">alumnas m&aacute;ximo</span></div>
-          <div class="stat"><span class="n">02</span><span class="l">modelos reales</span></div>
-          <div class="stat"><span class="n">08</span><span class="l">piezas en el kit</span></div>
+          <div class="stat"><span class="n">02</span><span class="l" data-i18n="train-stat1">d&iacute;as intensivos</span></div>
+          <div class="stat"><span class="n">04</span><span class="l" data-i18n="train-stat2">alumnas m&aacute;ximo</span></div>
+          <div class="stat"><span class="n">02</span><span class="l" data-i18n="train-stat3">modelos reales</span></div>
+          <div class="stat"><span class="n">08</span><span class="l" data-i18n="train-stat4">piezas en el kit</span></div>
         </div>
       </div>
     </div>
@@ -3198,29 +3246,29 @@ body:has(.vb.v2) {
   <div class="vb-training-part vb-training-program">
     <div class="container">
       <div class="reveal vb-training-section-h">
-        <div class="vb-eyebrow gold">&mdash; El programa</div>
-        <h3>Hora a hora,<span class="ital"> de verdad.</span></h3>
-        <p>Sin relleno, sin slides de motivaci&oacute;n. Esto es lo que hacemos cada d&iacute;a, contado al minuto.</p>
+        <div class="vb-eyebrow gold" data-i18n="train-prog-eyebrow">&mdash; El programa</div>
+        <h3 data-i18n-html="train-prog-h">Hora a hora,<span class="ital"> de verdad.</span></h3>
+        <p data-i18n="train-prog-sub">Sin relleno, sin slides de motivaci&oacute;n. Esto es lo que hacemos cada d&iacute;a, contado al minuto.</p>
       </div>
 
       <div class="vb-program">
         <!-- Day 1 -->
         <div class="vb-program-day open" id="program-day-1">
           <button type="button" class="vb-program-day-head" data-day="1">
-            <span class="vb-program-day-num">D&iacute;a 01</span>
-            <span class="vb-program-day-title">Anatom&iacute;a, t&eacute;cnica, primera pr&aacute;ctica.</span>
-            <span class="vb-program-day-meta">09:30 &mdash; 18:00 &middot; S&aacute;bado</span>
+            <span class="vb-program-day-num" data-i18n="train-day1-num">D&iacute;a 01</span>
+            <span class="vb-program-day-title" data-i18n="train-day1-title">Anatom&iacute;a, t&eacute;cnica, primera pr&aacute;ctica.</span>
+            <span class="vb-program-day-meta" data-i18n="train-day1-meta">09:30 &mdash; 18:00 &middot; S&aacute;bado</span>
             <span class="vb-program-day-icon">&mdash;</span>
           </button>
           <div class="vb-program-day-body">
             <ol class="vb-program-list">
-              <li><span class="t">09:30</span><div><h5>Bienvenida y caf&eacute;</h5><p>Conoce al grupo y al espacio.</p></div></li>
-              <li><span class="t">10:00</span><div><h5>Anatom&iacute;a de la mirada</h5><p>Estructura de cejas y pesta&ntilde;as. C&oacute;mo se dise&ntilde;a una mirada por proporci&oacute;n.</p></div></li>
-              <li><span class="t">11:30</span><div><h5>Higiene y preparaci&oacute;n</h5><p>Materiales, asepsia, parches. Cliente segura, profesional cuidada.</p></div></li>
-              <li><span class="t">13:00</span><div><h5>Comida en grupo</h5><p>Incluida. Pausa con los compa&ntilde;eros.</p></div></li>
-              <li><span class="t">14:30</span><div><h5>Mapeado en pareja</h5><p>Mapeas a tu compa&ntilde;era y te mapean a ti. Cr&iacute;tica constructiva.</p></div></li>
-              <li><span class="t">16:00</span><div><h5>Primera t&eacute;cnica cl&aacute;sica</h5><p>Aplicaci&oacute;n pelo a pelo en modelo de pr&aacute;ctica. Ritmo, presi&oacute;n, observaci&oacute;n.</p></div></li>
-              <li><span class="t">18:00</span><div><h5>Cierre del d&iacute;a</h5><p>Resumen del aprendizaje, dudas, kit de repaso para casa.</p></div></li>
+              <li><span class="t">09:30</span><div><h5 data-i18n="d1-1-h">Bienvenida y caf&eacute;</h5><p data-i18n="d1-1-p">Conoce al grupo y al espacio.</p></div></li>
+              <li><span class="t">10:00</span><div><h5 data-i18n="d1-2-h">Anatom&iacute;a de la mirada</h5><p data-i18n="d1-2-p">Estructura de cejas y pesta&ntilde;as. C&oacute;mo se dise&ntilde;a una mirada por proporci&oacute;n.</p></div></li>
+              <li><span class="t">11:30</span><div><h5 data-i18n="d1-3-h">Higiene y preparaci&oacute;n</h5><p data-i18n="d1-3-p">Materiales, asepsia, parches. Cliente segura, profesional cuidada.</p></div></li>
+              <li><span class="t">13:00</span><div><h5 data-i18n="d1-4-h">Comida en grupo</h5><p data-i18n="d1-4-p">Incluida. Pausa con los compa&ntilde;eros.</p></div></li>
+              <li><span class="t">14:30</span><div><h5 data-i18n="d1-5-h">Mapeado en pareja</h5><p data-i18n="d1-5-p">Mapeas a tu compa&ntilde;era y te mapean a ti. Cr&iacute;tica constructiva.</p></div></li>
+              <li><span class="t">16:00</span><div><h5 data-i18n="d1-6-h">Primera t&eacute;cnica cl&aacute;sica</h5><p data-i18n="d1-6-p">Aplicaci&oacute;n pelo a pelo en modelo de pr&aacute;ctica. Ritmo, presi&oacute;n, observaci&oacute;n.</p></div></li>
+              <li><span class="t">18:00</span><div><h5 data-i18n="d1-7-h">Cierre del d&iacute;a</h5><p data-i18n="d1-7-p">Resumen del aprendizaje, dudas, kit de repaso para casa.</p></div></li>
             </ol>
           </div>
         </div>
@@ -3228,20 +3276,20 @@ body:has(.vb.v2) {
         <!-- Day 2 -->
         <div class="vb-program-day" id="program-day-2">
           <button type="button" class="vb-program-day-head" data-day="2">
-            <span class="vb-program-day-num">D&iacute;a 02</span>
-            <span class="vb-program-day-title">Modelo real, postventa, tu negocio.</span>
-            <span class="vb-program-day-meta">09:30 &mdash; 18:30 &middot; Domingo</span>
+            <span class="vb-program-day-num" data-i18n="train-day2-num">D&iacute;a 02</span>
+            <span class="vb-program-day-title" data-i18n="train-day2-title">Modelo real, postventa, tu negocio.</span>
+            <span class="vb-program-day-meta" data-i18n="train-day2-meta">09:30 &mdash; 18:30 &middot; Domingo</span>
             <span class="vb-program-day-icon">+</span>
           </button>
           <div class="vb-program-day-body">
             <ol class="vb-program-list">
-              <li><span class="t">09:30</span><div><h5>Repaso y consultas</h5><p>Lo que no qued&oacute; claro del d&iacute;a uno.</p></div></li>
-              <li><span class="t">10:00</span><div><h5>Modelo real I</h5><p>Primera clienta de verdad bajo supervisi&oacute;n. Mapeado, t&eacute;cnica, finalizaci&oacute;n.</p></div></li>
-              <li><span class="t">13:00</span><div><h5>Comida en grupo</h5><p>Incluida. Conversaci&oacute;n con J&amp;S.</p></div></li>
-              <li><span class="t">14:30</span><div><h5>Modelo real II</h5><p>Segunda clienta. Trabajamos velocidad, simetr&iacute;a y di&aacute;logo.</p></div></li>
-              <li><span class="t">16:30</span><div><h5>Postvenida y fidelizaci&oacute;n</h5><p>Cuidado en casa, recomendaciones, citas de seguimiento, lenguaje con la clienta.</p></div></li>
-              <li><span class="t">17:30</span><div><h5>Tu plan de negocio</h5><p>Precio, agenda, retoques, comunidad. Lo que nadie te cuenta.</p></div></li>
-              <li><span class="t">18:30</span><div><h5>Entrega de diplomas</h5><p>Foto de grupo. Brindis.</p></div></li>
+              <li><span class="t">09:30</span><div><h5 data-i18n="d2-1-h">Repaso y consultas</h5><p data-i18n="d2-1-p">Lo que no qued&oacute; claro del d&iacute;a uno.</p></div></li>
+              <li><span class="t">10:00</span><div><h5 data-i18n="d2-2-h">Modelo real I</h5><p data-i18n="d2-2-p">Primera clienta de verdad bajo supervisi&oacute;n. Mapeado, t&eacute;cnica, finalizaci&oacute;n.</p></div></li>
+              <li><span class="t">13:00</span><div><h5 data-i18n="d2-3-h">Comida en grupo</h5><p data-i18n="d2-3-p">Incluida. Conversaci&oacute;n con J&amp;S.</p></div></li>
+              <li><span class="t">14:30</span><div><h5 data-i18n="d2-4-h">Modelo real II</h5><p data-i18n="d2-4-p">Segunda clienta. Trabajamos velocidad, simetr&iacute;a y di&aacute;logo.</p></div></li>
+              <li><span class="t">16:30</span><div><h5 data-i18n="d2-5-h">Postvenida y fidelizaci&oacute;n</h5><p data-i18n="d2-5-p">Cuidado en casa, recomendaciones, citas de seguimiento, lenguaje con la clienta.</p></div></li>
+              <li><span class="t">17:30</span><div><h5 data-i18n="d2-6-h">Tu plan de negocio</h5><p data-i18n="d2-6-p">Precio, agenda, retoques, comunidad. Lo que nadie te cuenta.</p></div></li>
+              <li><span class="t">18:30</span><div><h5 data-i18n="d2-7-h">Entrega de diplomas</h5><p data-i18n="d2-7-p">Foto de grupo. Brindis.</p></div></li>
             </ol>
           </div>
         </div>
@@ -3253,20 +3301,20 @@ body:has(.vb.v2) {
   <div class="vb-training-part vb-training-kit-part">
     <div class="container">
       <div class="reveal vb-training-section-h">
-        <div class="vb-eyebrow gold">&mdash; El kit</div>
-        <h3>Te llevas <span class="ital">todo</span> esto.</h3>
-        <p>Empiezas a trabajar nada m&aacute;s salir. Sin compras de &uacute;ltima hora, sin sorpresas.</p>
+        <div class="vb-eyebrow gold" data-i18n="kit-eyebrow">&mdash; El kit</div>
+        <h3 data-i18n-html="kit-h">Te llevas <span class="ital">todo</span> esto.</h3>
+        <p data-i18n="kit-sub">Empiezas a trabajar nada m&aacute;s salir. Sin compras de &uacute;ltima hora, sin sorpresas.</p>
       </div>
 
       <div class="vb-kit-grid">
-        <div class="reveal vb-kit-item" style="transition-delay:0s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M12 6 L20 22 L28 6 M20 22 L20 35" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 14 L20 22 L24 14" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label">Pinzas profesionales</span></div>
-        <div class="reveal vb-kit-item" style="transition-delay:0.05s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><ellipse cx="20" cy="25" rx="14" ry="4" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 25 L7 32 Q7 34 9 34 L31 34 Q33 34 33 32 L34 25" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 25 L14 21 M20 25 L20 19 M26 25 L26 22" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label">Bandeja de cristal</span></div>
-        <div class="reveal vb-kit-item" style="transition-delay:0.1s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M8 18 Q14 12, 20 16 Q26 12, 32 18 Q32 24, 26 26 Q20 28, 14 26 Q8 24, 8 18 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 18 L18 18 M22 18 L26 18" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label">Parches y micropore</span></div>
-        <div class="reveal vb-kit-item" style="transition-delay:0.15s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M6 28 Q20 16, 34 28" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 26 L8 18 M14 23 L13 14 M18 21 L18 12 M22 21 L22 12 M26 23 L27 14 M30 26 L32 18" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label">Extensiones (3 longitudes)</span></div>
-        <div class="reveal vb-kit-item" style="transition-delay:0.2s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M14 8 L26 8 L26 14 L28 16 L28 32 Q28 34 26 34 L14 34 Q12 34 12 32 L12 16 L14 14 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8 L16 4 L24 4 L24 8" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label">Adhesivo profesional</span></div>
-        <div class="reveal vb-kit-item" style="transition-delay:0.25s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M12 14 L28 14 L28 32 Q28 34 26 34 L14 34 Q12 34 12 32 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 14 L16 8 L24 8 L24 14" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 20 L24 20 M16 24 L24 24" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg></div><span class="vb-kit-label">Espuma limpiadora</span></div>
-        <div class="reveal vb-kit-item" style="transition-delay:0.3s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M8 8 L20 6 L32 8 L32 32 L20 30 L8 32 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 6 L20 30" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label">Manual Realza</span></div>
-        <div class="reveal vb-kit-item" style="transition-delay:0.35s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M10 14 L30 14 L32 34 L8 34 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 14 Q15 8, 20 8 Q25 8, 25 14" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label">Bolsa de transporte</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M12 6 L20 22 L28 6 M20 22 L20 35" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 14 L20 22 L24 14" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label" data-i18n="kit1">Pinzas profesionales</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0.05s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><ellipse cx="20" cy="25" rx="14" ry="4" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 25 L7 32 Q7 34 9 34 L31 34 Q33 34 33 32 L34 25" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 25 L14 21 M20 25 L20 19 M26 25 L26 22" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label" data-i18n="kit2">Bandeja de cristal</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0.1s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M8 18 Q14 12, 20 16 Q26 12, 32 18 Q32 24, 26 26 Q20 28, 14 26 Q8 24, 8 18 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 18 L18 18 M22 18 L26 18" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label" data-i18n="kit3">Parches y micropore</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0.15s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M6 28 Q20 16, 34 28" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 26 L8 18 M14 23 L13 14 M18 21 L18 12 M22 21 L22 12 M26 23 L27 14 M30 26 L32 18" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label" data-i18n="kit4">Extensiones (3 longitudes)</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0.2s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M14 8 L26 8 L26 14 L28 16 L28 32 Q28 34 26 34 L14 34 Q12 34 12 32 L12 16 L14 14 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8 L16 4 L24 4 L24 8" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label" data-i18n="kit5">Adhesivo profesional</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0.25s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M12 14 L28 14 L28 32 Q28 34 26 34 L14 34 Q12 34 12 32 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 14 L16 8 L24 8 L24 14" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 20 L24 20 M16 24 L24 24" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/></svg></div><span class="vb-kit-label" data-i18n="kit6">Espuma limpiadora</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0.3s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M8 8 L20 6 L32 8 L32 32 L20 30 L8 32 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 6 L20 30" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label" data-i18n="kit7">Manual Realza</span></div>
+        <div class="reveal vb-kit-item" style="transition-delay:0.35s"><div class="vb-kit-ic"><svg viewBox="0 0 40 40" width="36" height="36"><path d="M10 14 L30 14 L32 34 L8 34 Z" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 14 Q15 8, 20 8 Q25 8, 25 14" fill="none" stroke="#FFC58A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="vb-kit-label" data-i18n="kit8">Bolsa de transporte</span></div>
       </div>
     </div>
   </div>
@@ -3276,23 +3324,23 @@ body:has(.vb.v2) {
     <div class="container">
       <div class="vb-training-who-grid">
         <div class="reveal vb-training-who">
-          <div class="vb-eyebrow gold">&mdash; &iquest;Para qui&eacute;n es?</div>
-          <h3>Para ti, si&hellip;</h3>
+          <div class="vb-eyebrow gold" data-i18n="who-eyebrow">&mdash; &iquest;Para qui&eacute;n es?</div>
+          <h3 data-i18n="who-yes-h">Para ti, si&hellip;</h3>
           <ul class="vb-training-who-list yes">
-            <li>Empiezas de cero y quieres una base t&eacute;cnica s&oacute;lida.</li>
-            <li>Ya trabajas en est&eacute;tica y quieres ampliar a pesta&ntilde;as.</li>
-            <li>Buscas un oficio con demanda recurrente y rentable.</li>
-            <li>Te importa el criterio, no solo copiar mappings.</li>
+            <li data-i18n="who-yes-1">Empiezas de cero y quieres una base t&eacute;cnica s&oacute;lida.</li>
+            <li data-i18n="who-yes-2">Ya trabajas en est&eacute;tica y quieres ampliar a pesta&ntilde;as.</li>
+            <li data-i18n="who-yes-3">Buscas un oficio con demanda recurrente y rentable.</li>
+            <li data-i18n="who-yes-4">Te importa el criterio, no solo copiar mappings.</li>
           </ul>
         </div>
         <div class="reveal vb-training-who" style="transition-delay:0.15s">
-          <div class="vb-eyebrow gold">&mdash; No es para ti</div>
-          <h3>Sigue buscando, si&hellip;</h3>
+          <div class="vb-eyebrow gold" data-i18n="who-no-eyebrow">&mdash; No es para ti</div>
+          <h3 data-i18n="who-no-h">Sigue buscando, si&hellip;</h3>
           <ul class="vb-training-who-list no">
-            <li>Quieres certificarte en un fin de semana sin tocar a una clienta real.</li>
-            <li>Esperas que te diga &laquo;el m&eacute;todo&raquo; sin ense&ntilde;arte el porqu&eacute;.</li>
-            <li>Vienes a sacar foto para Instagram y volver a casa.</li>
-            <li>No est&aacute;s dispuesta a equivocarte delante de tus compa&ntilde;eras.</li>
+            <li data-i18n="who-no-1">Quieres certificarte en un fin de semana sin tocar a una clienta real.</li>
+            <li data-i18n="who-no-2">Esperas que te diga &laquo;el m&eacute;todo&raquo; sin ense&ntilde;arte el porqu&eacute;.</li>
+            <li data-i18n="who-no-3">Vienes a sacar foto para Instagram y volver a casa.</li>
+            <li data-i18n="who-no-4">No est&aacute;s dispuesta a equivocarte delante de tus compa&ntilde;eras.</li>
           </ul>
         </div>
       </div>
@@ -3305,24 +3353,24 @@ body:has(.vb.v2) {
       <div class="vb-training-logistics">
         <div class="vb-training-logistics-info">
           <div class="reveal vb-training-section-h">
-            <div class="vb-eyebrow gold">&mdash; Lo importante</div>
-            <h3>Detalles<span class="ital"> pr&aacute;cticos.</span></h3>
+            <div class="vb-eyebrow gold" data-i18n="log-eyebrow">&mdash; Lo importante</div>
+            <h3 data-i18n-html="log-h">Detalles<span class="ital"> pr&aacute;cticos.</span></h3>
           </div>
 
           <dl class="reveal vb-training-info-dl" style="transition-delay:0.1s">
-            <dt>Pr&oacute;xima convocatoria</dt><dd><em>[FECHA] &mdash; confirma plaza por WhatsApp</em></dd>
-            <dt>Horario</dt><dd>S&aacute;bado y domingo &middot; 09:30 a 18:00 / 18:30</dd>
-            <dt>Estudio</dt><dd>Av. Carlemany 73, 2-A &middot; Escaldes-Engordany &middot; Andorra</dd>
-            <dt>Plazas</dt><dd>4 alumnas m&aacute;ximo &middot; queda <strong style="color:#FFC58A">1 plaza</strong></dd>
-            <dt>Inversi&oacute;n</dt><dd>Consulta &middot; Pago aplazado en 3 cuotas disponible</dd>
-            <dt>Idioma</dt><dd>Espa&ntilde;ol &middot; Catal&aacute;n</dd>
-            <dt>Lo que incluye</dt><dd>Kit profesional, manual, certificado, modelo real, coffee y comida los dos d&iacute;as</dd>
+            <dt data-i18n="log-dt-date">Pr&oacute;xima convocatoria</dt><dd data-i18n-html="log-dd-date"><em>[FECHA] &mdash; confirma plaza por WhatsApp</em></dd>
+            <dt data-i18n="log-dt-schedule">Horario</dt><dd data-i18n="log-dd-schedule">S&aacute;bado y domingo &middot; 09:30 a 18:00 / 18:30</dd>
+            <dt data-i18n="log-dt-studio">Estudio</dt><dd>Av. Carlemany 73, 2-A &middot; Escaldes-Engordany &middot; Andorra</dd>
+            <dt data-i18n="log-dt-spots">Plazas</dt><dd data-i18n-html="log-dd-spots">4 alumnas m&aacute;ximo &middot; queda <strong style="color:#FFC58A">1 plaza</strong></dd>
+            <dt data-i18n="log-dt-invest">Inversi&oacute;n</dt><dd data-i18n="log-dd-invest">Consulta &middot; Pago aplazado en 3 cuotas disponible</dd>
+            <dt data-i18n="log-dt-lang">Idioma</dt><dd data-i18n="log-dd-lang">Espa&ntilde;ol &middot; Catal&aacute;n</dd>
+            <dt data-i18n="log-dt-includes">Lo que incluye</dt><dd data-i18n="log-dd-includes">Kit profesional, manual, certificado, modelo real, coffee y comida los dos d&iacute;as</dd>
           </dl>
 
           <div class="reveal" style="transition-delay:0.2s">
             <div class="vb-training-cta-row">
-              <a class="btn" href="#" style="background:#FFC58A;color:#1A0F0A">Reservar plaza<span class="arrow">&rarr;</span></a>
-              <a class="link-arrow" href="#" style="color:#FFC58A">Hablar por WhatsApp <span class="arrow">&rarr;</span></a>
+              <a class="btn" href="#" style="background:#FFC58A;color:#1A0F0A"><span data-i18n="log-btn">Reservar plaza</span><span class="arrow">&rarr;</span></a>
+              <a class="link-arrow" href="#" style="color:#FFC58A"><span data-i18n="log-whatsapp">Hablar por WhatsApp</span> <span class="arrow">&rarr;</span></a>
             </div>
           </div>
         </div>
@@ -3330,7 +3378,7 @@ body:has(.vb.v2) {
         <div class="reveal vb-training-logistics-photo" style="transition-delay:0.15s">
           <img src="assets/training.jpg" alt="Sesi&oacute;n de formaci&oacute;n Realza" />
           <span class="vb-training-photo-caption">
-            <em>&laquo;</em> Aqu&iacute; te equivocas tres veces antes de hacerlo bien una. <em>&raquo;</em>
+            <span data-i18n="log-quote"><em>&laquo;</em> Aqu&iacute; te equivocas tres veces antes de hacerlo bien una. <em>&raquo;</em></span>
             <span class="sig">&mdash; J&amp;S</span>
           </span>
         </div>
@@ -3345,7 +3393,7 @@ body:has(.vb.v2) {
 <section class="vb-testimonials" data-shift="testi">
   <div class="container vb-testi-stage">
     <div class="reveal vb-section-head" style="text-align:center">
-      <div class="vb-eyebrow">&mdash; Lo que dicen</div>
+      <div class="vb-eyebrow" data-i18n="testi-eyebrow">&mdash; Lo que dicen</div>
     </div>
     <div class="vb-testi-card-wrap" id="testi-card">
       <div class="vb-testi-photo" id="testi-photo" style="background-image:url(assets/lamination-3.jpg)"></div>
@@ -3383,14 +3431,14 @@ body:has(.vb.v2) {
     </div>
 
     <div class="vb-studio-text">
-      <div class="reveal"><div class="vb-eyebrow">&mdash; El estudio</div></div>
-      <h2 class="vb-section-h">Te esperamos<span class="ital">en Andorra.</span></h2>
+      <div class="reveal"><div class="vb-eyebrow" data-i18n="studio-eyebrow">&mdash; El estudio</div></div>
+      <h2 class="vb-section-h" data-i18n-html="studio-h">Te esperamos<span class="ital">en Andorra.</span></h2>
       <p class="vb-studio-address">Av. Carlemany 73, 2-A<br/>AD700 Escaldes-Engordany<br/>Andorra</p>
 
       <dl class="vb-studio-hours">
-        <dt>Lun&ndash;Vie</dt><dd>10:00 &mdash; 20:00</dd>
-        <dt>S&aacute;bado</dt><dd>10:00 &mdash; 15:00</dd>
-        <dt>Domingo</dt><dd class="closed">Cerrado</dd>
+        <dt data-i18n="studio-weekdays">Lun&ndash;Vie</dt><dd>10:00 &mdash; 20:00</dd>
+        <dt data-i18n="studio-sat">S&aacute;bado</dt><dd>10:00 &mdash; 15:00</dd>
+        <dt data-i18n="studio-sun">Domingo</dt><dd class="closed" data-i18n="studio-closed">Cerrado</dd>
       </dl>
 
       <div class="reveal vb-studio-map-wrap">
@@ -3403,7 +3451,7 @@ body:has(.vb.v2) {
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
-        <a href="https://www.google.com/maps/search/Av.+Carlemany+73,+AD700+Escaldes-Engordany,+Andorra" target="_blank" rel="noopener" class="vb-studio-map-link">Abrir en Google Maps <span class="arrow">&rarr;</span></a>
+        <a href="https://www.google.com/maps/search/Av.+Carlemany+73,+AD700+Escaldes-Engordany,+Andorra" target="_blank" rel="noopener" class="vb-studio-map-link"><span data-i18n="studio-maps">Abrir en Google Maps</span> <span class="arrow">&rarr;</span></a>
       </div>
 
       <div class="vb-studio-contact">
@@ -3411,7 +3459,7 @@ body:has(.vb.v2) {
         <a href="#">WhatsApp &rarr;</a>
       </div>
 
-      <a class="btn btn-primary" href="#reservar">Reservar tu cita<span class="arrow">&rarr;</span></a>
+      <a class="btn btn-primary" href="#reservar"><span data-i18n="studio-book">Reservar tu cita</span><span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -3422,14 +3470,14 @@ body:has(.vb.v2) {
 <footer>
   <section class="footer-cta">
     <div class="container footer-cta-inner">
-      <div class="reveal"><p class="footer-cta-eyebrow">El &uacute;ltimo gesto antes de irte</p></div>
+      <div class="reveal"><p class="footer-cta-eyebrow" data-i18n="fcta-eyebrow">El &uacute;ltimo gesto antes de irte</p></div>
       <div class="reveal" style="transition-delay:0.1s">
-        <h2 class="footer-cta-h">Reserva <em>tu</em><br/>mirada.</h2>
+        <h2 class="footer-cta-h" data-i18n-html="fcta-h">Reserva <em>tu</em><br/>mirada.</h2>
       </div>
       <div class="reveal" style="transition-delay:0.2s">
         <div class="footer-cta-actions">
-          <a class="btn btn-primary" href="#reservar">Reservar cita<span class="arrow">&rarr;</span></a>
-          <a class="link-arrow" href="#">WhatsApp directo <span class="arrow">&rarr;</span></a>
+          <a class="btn btn-primary" href="#reservar"><span data-i18n="fcta-btn">Reservar cita</span><span class="arrow">&rarr;</span></a>
+          <a class="link-arrow" href="#"><span data-i18n="fcta-wa">WhatsApp directo</span> <span class="arrow">&rarr;</span></a>
         </div>
       </div>
     </div>
@@ -3439,9 +3487,9 @@ body:has(.vb.v2) {
     <div class="container">
       <div class="footer-newsletter-grid">
         <div>
-          <p class="footer-eyebrow">Bolet&iacute;n &middot; Cada dos semanas</p>
-          <h3>S&uacute;mate al <em>C&iacute;rculo Mirada.</em></h3>
-          <p class="footer-newsletter-sub">Rituales de cuidado, lanzamientos del estudio y acceso anticipado a pr&oacute;ximas formaciones &mdash; directo a tu bandeja.</p>
+          <p class="footer-eyebrow" data-i18n="nl-eyebrow">Bolet&iacute;n &middot; Cada dos semanas</p>
+          <h3 data-i18n-html="nl-h">S&uacute;mate al <em>C&iacute;rculo Mirada.</em></h3>
+          <p class="footer-newsletter-sub" data-i18n="nl-sub">Rituales de cuidado, lanzamientos del estudio y acceso anticipado a pr&oacute;ximas formaciones &mdash; directo a tu bandeja.</p>
         </div>
         <form id="newsletter-form">
           <input type="email" placeholder="tu@correo.com" aria-label="Tu correo" />
@@ -3457,55 +3505,55 @@ body:has(.vb.v2) {
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col footer-col-1">
-          <h4>Estudio</h4>
+          <h4 data-i18n="foot-studio">Estudio</h4>
           <div class="footer-studio-photo"></div>
           <ul>
             <li>Av. Carlemany 73, 2-A</li>
             <li>AD700 Escaldes-Engordany</li>
             <li>Andorra</li>
           </ul>
-          <a href="#" class="footer-link-arrow">C&oacute;mo llegar <span class="arrow">&rarr;</span></a>
+          <a href="#" class="footer-link-arrow"><span data-i18n="foot-directions">C&oacute;mo llegar</span> <span class="arrow">&rarr;</span></a>
         </div>
 
         <div class="footer-col">
-          <h4>Horarios</h4>
+          <h4 data-i18n="foot-hours">Horarios</h4>
           <dl class="footer-hours">
-            <dt>Lun</dt><dd>10:00 &mdash; 20:00</dd>
-            <dt>Mar</dt><dd>10:00 &mdash; 20:00</dd>
-            <dt>Mi&eacute;</dt><dd>10:00 &mdash; 20:00</dd>
-            <dt>Jue</dt><dd>10:00 &mdash; 20:00</dd>
-            <dt>Vie</dt><dd>10:00 &mdash; 20:00</dd>
-            <dt>S&aacute;b</dt><dd>10:00 &mdash; 15:00</dd>
-            <dt>Dom</dt><dd class="closed">Cerrado</dd>
+            <dt data-i18n="foot-mon">Lun</dt><dd>10:00 &mdash; 20:00</dd>
+            <dt data-i18n="foot-tue">Mar</dt><dd>10:00 &mdash; 20:00</dd>
+            <dt data-i18n="foot-wed">Mi&eacute;</dt><dd>10:00 &mdash; 20:00</dd>
+            <dt data-i18n="foot-thu">Jue</dt><dd>10:00 &mdash; 20:00</dd>
+            <dt data-i18n="foot-fri">Vie</dt><dd>10:00 &mdash; 20:00</dd>
+            <dt data-i18n="foot-sat">S&aacute;b</dt><dd>10:00 &mdash; 15:00</dd>
+            <dt data-i18n="foot-sun">Dom</dt><dd class="closed" data-i18n="foot-closed">Cerrado</dd>
           </dl>
         </div>
 
         <div class="footer-col">
-          <h4>Servicios</h4>
+          <h4 data-i18n="foot-services">Servicios</h4>
           <ul class="footer-nav">
-            <li><a href="#">Laminado de cejas</a></li>
-            <li><a href="#">Lifting de pesta&ntilde;as</a></li>
-            <li><a href="#">Extensiones cl&aacute;sicas</a></li>
-            <li><a href="#">Dise&ntilde;o de mirada</a></li>
-            <li><a href="#" style="margin-top:0.6rem;color:var(--accent-gold)">Reservar &rarr;</a></li>
+            <li><a href="#" data-i18n="book-svc1-t">Laminado de cejas</a></li>
+            <li><a href="#" data-i18n="book-svc2-t">Lifting de pesta&ntilde;as</a></li>
+            <li><a href="#" data-i18n="book-svc3-t">Extensiones cl&aacute;sicas</a></li>
+            <li><a href="#" data-i18n="book-svc4-t">Dise&ntilde;o de mirada</a></li>
+            <li><a href="#" style="margin-top:0.6rem;color:var(--accent-gold)" data-i18n="foot-book">Reservar &rarr;</a></li>
           </ul>
-          <h4 style="margin-top:1.6rem">Tienda</h4>
+          <h4 style="margin-top:1.6rem" data-i18n="foot-shop">Tienda</h4>
           <ul class="footer-nav">
-            <li><a href="#">S&eacute;rum para pesta&ntilde;as</a></li>
-            <li><a href="#">Pack ritual</a></li>
-            <li><a href="#">Tarjeta regalo</a></li>
+            <li><a href="#" data-i18n="foot-serum">S&eacute;rum para pesta&ntilde;as</a></li>
+            <li><a href="#" data-i18n="foot-pack">Pack ritual</a></li>
+            <li><a href="#" data-i18n="foot-gift">Tarjeta regalo</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Contacto</h4>
+          <h4 data-i18n="foot-contact">Contacto</h4>
           <ul class="footer-nav">
             <li><a href="tel:+376635994">&#128222; +376 635 994</a></li>
             <li><a href="#">WhatsApp &rarr;</a></li>
             <li><a href="mailto:hola@realzatumirada.com">hola@realzatumirada.com</a></li>
           </ul>
 
-          <h4 style="margin-top:1.6rem">Sigue</h4>
+          <h4 style="margin-top:1.6rem" data-i18n="foot-follow">Sigue</h4>
           <div class="footer-social">
             <a href="#" aria-label="Instagram">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
@@ -3532,11 +3580,11 @@ body:has(.vb.v2) {
       </div>
 
       <div class="footer-bottom">
-        <span>&copy; 2026 &middot; Hecho con cuidado en Andorra</span>
+        <span data-i18n="foot-copy">&copy; 2026 &middot; Hecho con cuidado en Andorra</span>
         <span style="display:flex;gap:1.5rem">
-          <a href="#">Privacidad</a>
-          <a href="#">Cookies</a>
-          <a href="#">T&eacute;rminos</a>
+          <a href="#" data-i18n="foot-privacy">Privacidad</a>
+          <a href="#" data-i18n="foot-cookies">Cookies</a>
+          <a href="#" data-i18n="foot-terms">T&eacute;rminos</a>
         </span>
         <span class="footer-sig">by J&amp;S</span>
       </div>
@@ -3683,7 +3731,7 @@ body:has(.vb.v2) {
 
   // ── Booking wizard ──
   var bookingState = { step: 1, service: null, date: null, time: null };
-  var svcNames = {
+  window._svcNames = window._svcNames || {
     laminado: 'Laminado de cejas',
     lifting: 'Lifting de pesta\u00f1as',
     extensiones: 'Extensiones cl\u00e1sicas',
@@ -3732,7 +3780,7 @@ body:has(.vb.v2) {
   if (back3) back3.addEventListener('click', function() { showBookingStep(2); });
 
   // Build days
-  var dayNames = ['Dom', 'Lun', 'Mar', 'Mi\u00e9', 'Jue', 'Vie', 'S\u00e1b'];
+  window._dayNames = window._dayNames || ['Dom', 'Lun', 'Mar', 'Mi\u00e9', 'Jue', 'Vie', 'S\u00e1b'];
   function buildDays() {
     var daysContainer = document.getElementById('booking-days');
     if (!daysContainer) return;
@@ -3748,7 +3796,7 @@ body:has(.vb.v2) {
       btn.className = 'vb-day' + (bookingState.date === key ? ' selected' : '') + (closed ? ' closed' : '');
       btn.disabled = closed;
       btn.setAttribute('data-date', key);
-      btn.innerHTML = '<span class="dname">' + dayNames[d.getDay()] + '</span><span class="dnum">' + (closed ? '&mdash;' : d.getDate()) + '</span>';
+      btn.innerHTML = '<span class="dname">' + window._dayNames[d.getDay()] + '</span><span class="dnum">' + (closed ? '&mdash;' : d.getDate()) + '</span>';
       btn.addEventListener('click', function(e) {
         var target = e.currentTarget;
         if (target.disabled) return;
@@ -3791,27 +3839,31 @@ body:has(.vb.v2) {
   }
 
   // Build summary
+  window._dateLocale = window._dateLocale || 'es-ES';
   function buildSummary() {
     var sumSvc = document.getElementById('sum-service');
     var sumDate = document.getElementById('sum-date');
     var sumTime = document.getElementById('sum-time');
-    if (sumSvc) sumSvc.textContent = svcNames[bookingState.service] || '';
+    if (sumSvc) sumSvc.textContent = (window._svcNames[bookingState.service]) || '';
     if (sumDate && bookingState.date) {
       var dd = new Date(bookingState.date);
-      sumDate.textContent = dd.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' });
+      sumDate.textContent = dd.toLocaleDateString(window._dateLocale, { weekday: 'long', day: 'numeric', month: 'long' });
     }
     if (sumTime) sumTime.textContent = bookingState.time || '';
   }
+  window._buildDays = buildDays;
+  window._buildSummary = buildSummary;
 
   // ── Testimonial carousel ──
-  var testimonials = [
+  // Testimonials data is managed by i18n.js via window._testiData
+  window._testiData = window._testiData || [
     { quote: 'Vine por una sesi\u00f3n y volv\u00ed por la experiencia. Stephany lee tu cara como nadie.', name: 'Marta L.', role: 'Laminado de cejas', img: 'assets/lamination-3.jpg' },
     { quote: 'El s\u00e9rum me cambi\u00f3 las pesta\u00f1as en dos meses. Real, no marketing.', name: 'N\u00faria F.', role: 'S\u00e9rum para pesta\u00f1as', img: 'assets/lamination-5.jpg' },
     { quote: 'Andorra ten\u00eda deuda con un sitio como este \u2014 atendido, cuidado y bonito.', name: 'Clara V.', role: 'Clienta habitual', img: 'assets/lamination-2.jpg' },
     { quote: 'Jonathan es minucioso hasta lo enfermizo. Por eso mi laminado dura todo el mes.', name: 'Elena R.', role: 'Laminado + Lifting', img: 'assets/lamination-6.jpg' }
   ];
 
-  var testiIdx = 0;
+  window._testiIdx = 0;
   var testiPhoto = document.getElementById('testi-photo');
   var testiQuote = document.getElementById('testi-quote');
   var testiName = document.getElementById('testi-name');
@@ -3819,8 +3871,9 @@ body:has(.vb.v2) {
   var testiNav = document.getElementById('testi-nav');
 
   function showTestimonial(idx) {
-    testiIdx = idx;
-    var t = testimonials[idx];
+    window._testiIdx = idx;
+    var t = window._testiData[idx];
+    if (!t) return;
     if (testiPhoto) testiPhoto.style.backgroundImage = 'url(' + t.img + ')';
     if (testiQuote) testiQuote.textContent = t.quote;
     if (testiName) testiName.textContent = t.name;
@@ -3831,6 +3884,7 @@ body:has(.vb.v2) {
       });
     }
   }
+  window._testiShowFn = showTestimonial;
 
   if (testiNav) {
     testiNav.addEventListener('click', function(e) {
@@ -3843,7 +3897,7 @@ body:has(.vb.v2) {
   }
 
   setInterval(function() {
-    showTestimonial((testiIdx + 1) % testimonials.length);
+    showTestimonial((window._testiIdx + 1) % window._testiData.length);
   }, 7500);
 
   // ── Training accordion ──
@@ -3884,6 +3938,8 @@ body:has(.vb.v2) {
   video.play().catch(function() {});
 })();
 </script>
+
+<script src="assets/i18n.js"></script>
 
 </body>
 </html>
