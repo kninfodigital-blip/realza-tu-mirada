@@ -644,6 +644,125 @@ a { color: inherit; text-decoration: none; }
 }
 
 
+/* ── Nav Services Dropdown ── */
+.nav-services-wrap {
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: -12px;
+}
+.nav-services-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFFFFF;
+  border: 1px solid #1A1612;
+  min-width: 240px;
+  z-index: 200;
+  flex-direction: column;
+  padding: 0.5rem 0;
+}
+.nav-services-wrap::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  right: -20px;
+  height: 20px;
+}
+.nav-services-wrap:hover .nav-services-dropdown {
+  display: flex;
+}
+.nav-services-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #1A1612 !important;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+.nav-services-dropdown a:hover {
+  background: #f5f0eb;
+  padding-left: 1.5rem;
+}
+.nav-services-dropdown a .dd-num {
+  color: var(--vb-gold-bright);
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+.nav-services-dropdown a::after { display: none !important; }
+
+/* ── Services Showcase Section ── */
+.vb-services-showcase {
+  padding: clamp(3rem, 6vw, 6rem) 0;
+}
+.vb-services-panorama {
+  width: 100%;
+  margin: 2.5rem 0;
+  overflow: hidden;
+  border-radius: 0;
+}
+.vb-services-panorama img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+.vb-services-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2.5rem;
+}
+.vb-svc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.3rem;
+  border: 1px solid rgba(26, 22, 18, 0.2);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--vb-text);
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+.vb-svc-pill:hover {
+  background: #1A1612;
+  color: #FFFFFF;
+  border-color: #1A1612;
+}
+.vb-svc-pill-num {
+  font-size: 0.65rem;
+  opacity: 0.4;
+  font-weight: 600;
+}
+.vb-svc-pill .arrow {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+  opacity: 0;
+}
+.vb-svc-pill:hover .arrow {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
+@media (max-width: 768px) {
+  .vb-services-panorama img { height: 240px; }
+  .vb-services-list { flex-direction: column; align-items: stretch; }
+  .vb-svc-pill { justify-content: space-between; }
+  .vb-svc-pill .arrow { opacity: 1; }
+  .nav-services-dropdown { position: static; transform: none; min-width: auto; margin-top: 0.5rem; }
+}
+
 /* ================================================================
    VARIANT B v2 — Aurora Mirada
    ================================================================ */
@@ -2743,7 +2862,19 @@ body:has(.vb.v2) {
     </a>
 
     <nav class="header-nav">
-      <a href="#servicios" data-i18n="nav-services">Servicios</a>
+      <div class="nav-services-wrap">
+        <a href="#servicios" data-i18n="nav-services">Servicios</a>
+        <div class="nav-services-dropdown">
+          <a href="efecto-natural.html"><span class="dd-num">01</span> Efecto Natural</a>
+          <a href="efecto-2d.html"><span class="dd-num">02</span> Efecto 2D</a>
+          <a href="efecto-3d.html"><span class="dd-num">03</span> Efecto 3D</a>
+          <a href="efecto-foxy.html"><span class="dd-num">04</span> Efecto Foxy</a>
+          <a href="efecto-wispy.html"><span class="dd-num">05</span> Efecto Wispy</a>
+          <a href="efecto-anime.html"><span class="dd-num">06</span> Efecto Anime</a>
+          <a href="efecto-volumen-ruso.html"><span class="dd-num">07</span> Efecto Volumen Ruso</a>
+          <a href="efecto-lifting.html"><span class="dd-num">08</span> Lifting de Pesta&ntilde;as</a>
+        </div>
+      </div>
       <a href="#serum" data-i18n="nav-serum">S&eacute;rum</a>
       <a href="#formacion" data-i18n="nav-training">Formaci&oacute;n</a>
       <a href="#nosotros" data-i18n="nav-about">Nosotros</a>
@@ -2811,81 +2942,58 @@ body:has(.vb.v2) {
 <!-- ============================================================= -->
 <!-- SERVICES                                                       -->
 <!-- ============================================================= -->
-<section class="vb-services" id="servicios" data-shift="services">
+<section class="vb-services-showcase" id="servicios" data-shift="services">
   <div class="container">
     <div class="reveal vb-section-head">
-      <div class="vb-eyebrow" data-i18n="svc-eyebrow">&mdash; El cat&aacute;logo</div>
-      <h2 class="vb-section-h" data-i18n-html="svc-title">Tres cap&iacute;tulos<br /><span class="ital">de mirada.</span></h2>
-      <p class="vb-section-sub" data-i18n="svc-sub">Cada cita es una conversaci&oacute;n con tu rostro antes de poner las manos. Esto es lo que ofrecemos.</p>
+      <div class="vb-eyebrow">&mdash; Nuestros servicios</div>
+      <h2 class="vb-section-h">Elige tu <span class="ital">efecto.</span></h2>
     </div>
-
-    <!-- Service I -->
-    <div class="reveal vb-chapter">
-      <div class="vb-chapter-photo">
-        <span class="vb-chapter-num-bg">I</span>
-        <img src="assets/lamination-2.jpg" alt="Lifting de pesta&ntilde;as" />
-        <span class="vb-chapter-corner-tag">75 min</span>
-      </div>
-      <div class="vb-chapter-text">
-        <div class="vb-chapter-micro"><span class="dot"></span><span data-i18n="svc2-micro">Cap&iacute;tulo uno &middot; I</span></div>
-        <h3 class="vb-chapter-h" data-i18n-html="svc2-title">Lifting <span class="ital">de pesta&ntilde;as.</span></h3>
-        <p class="vb-chapter-desc" data-i18n="svc2-desc">Levantamos tus pesta&ntilde;as desde la ra&iacute;z para crear una curva natural que abre toda la mirada. Resultado limpio que dura casi dos meses, sin maquillaje.</p>
-        <ul class="vb-chapter-bullets">
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc2-bullet1">Resultado al instante</span></li>
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc2-bullet2">Hasta 7 semanas</span></li>
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc2-bullet3">Apto con s&eacute;rum</span></li>
-        </ul>
-        <div class="vb-chapter-actions">
-          <a href="#reservar" class="btn btn-primary"><span data-i18n="btn-reservar">Reservar</span><span class="arrow">&rarr;</span></a>
-          <a href="#" class="link-arrow"><span data-i18n="btn-detail">Ver detalle</span> <span class="arrow">&rarr;</span></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Service II -->
-    <div class="reveal vb-chapter reverse">
-      <div class="vb-chapter-photo">
-        <span class="vb-chapter-num-bg">II</span>
-        <img src="assets/lamination-4.jpg" alt="Extensiones de pesta&ntilde;as" />
-        <span class="vb-chapter-corner-tag">120 min</span>
-      </div>
-      <div class="vb-chapter-text">
-        <div class="vb-chapter-micro"><span class="dot"></span><span data-i18n="svc3-micro">Cap&iacute;tulo dos &middot; II</span></div>
-        <h3 class="vb-chapter-h" data-i18n-html="svc3-title">Extensiones <span class="ital">de pesta&ntilde;as.</span></h3>
-        <p class="vb-chapter-desc" data-i18n="svc3-desc">Pelo a pelo, mapeadas a la forma de tus ojos. Volumen real que se siente tuyo desde el primer parpadeo, no postizo ni estridente.</p>
-        <ul class="vb-chapter-bullets">
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc3-bullet1">Sesi&oacute;n inicial 2 h</span></li>
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc3-bullet2">Retoque cada 3 sem.</span></li>
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc3-bullet3">Adhesivo hipoalerg&eacute;nico</span></li>
-        </ul>
-        <div class="vb-chapter-actions">
-          <a href="#reservar" class="btn btn-primary"><span data-i18n="btn-reservar">Reservar</span><span class="arrow">&rarr;</span></a>
-          <a href="#" class="link-arrow"><span data-i18n="btn-detail">Ver detalle</span> <span class="arrow">&rarr;</span></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Service III -->
-    <div class="reveal vb-chapter">
-      <div class="vb-chapter-photo">
-        <span class="vb-chapter-num-bg">III</span>
-        <img src="assets/lamination-5.jpg" alt="Dise&ntilde;o de mirada" />
-        <span class="vb-chapter-corner-tag">90 min</span>
-      </div>
-      <div class="vb-chapter-text">
-        <div class="vb-chapter-micro"><span class="dot"></span><span data-i18n="svc4-micro">Cap&iacute;tulo tres &middot; III</span></div>
-        <h3 class="vb-chapter-h" data-i18n-html="svc4-title">Dise&ntilde;o <span class="ital">de mirada.</span></h3>
-        <p class="vb-chapter-desc" data-i18n="svc4-desc">Un estudio sin prisa de tu rostro, proporci&oacute;n y rasgos para dise&ntilde;ar la combinaci&oacute;n de servicios que m&aacute;s te favorece. Pensado solo para ti.</p>
-        <ul class="vb-chapter-bullets">
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc4-bullet1">1 h de consulta</span></li>
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc4-bullet2">Mapeado fotogr&aacute;fico</span></li>
-          <li><span class="b-mark">&#10038;</span><span data-i18n="svc4-bullet3">Plan a 3 meses</span></li>
-        </ul>
-        <div class="vb-chapter-actions">
-          <a href="#reservar" class="btn btn-primary"><span data-i18n="btn-reservar">Reservar</span><span class="arrow">&rarr;</span></a>
-          <a href="#" class="link-arrow"><span data-i18n="btn-detail">Ver detalle</span> <span class="arrow">&rarr;</span></a>
-        </div>
-      </div>
+  </div>
+  <div class="vb-services-panorama reveal">
+    <img src="assets/servicios-hero.jpg" alt="Servicios de pesta&ntilde;as Realza tu mirada" />
+  </div>
+  <div class="container">
+    <div class="vb-services-list reveal">
+      <a href="efecto-natural.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">01</span>
+        <span class="vb-svc-pill-name">Efecto Natural</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="efecto-2d.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">02</span>
+        <span class="vb-svc-pill-name">Efecto 2D</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="efecto-3d.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">03</span>
+        <span class="vb-svc-pill-name">Efecto 3D</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="efecto-foxy.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">04</span>
+        <span class="vb-svc-pill-name">Efecto Foxy</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="efecto-wispy.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">05</span>
+        <span class="vb-svc-pill-name">Efecto Wispy</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="efecto-anime.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">06</span>
+        <span class="vb-svc-pill-name">Efecto Anime</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="efecto-volumen-ruso.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">07</span>
+        <span class="vb-svc-pill-name">Efecto Volumen Ruso</span>
+        <span class="arrow">&rarr;</span>
+      </a>
+      <a href="efecto-lifting.html" class="vb-svc-pill">
+        <span class="vb-svc-pill-num">08</span>
+        <span class="vb-svc-pill-name">Efecto Lifting de Pesta&ntilde;as</span>
+        <span class="arrow">&rarr;</span>
+      </a>
     </div>
   </div>
 </section>
