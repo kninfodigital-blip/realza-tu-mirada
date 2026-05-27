@@ -250,17 +250,87 @@ a { color: inherit; text-decoration: none; }
 }
 [data-anim="off"] .letter-stagger > .letter { opacity: 1; filter: none; transform: none; }
 
-.header {
+/* ── Top utility bar ── */
+.top-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 80px;
-  z-index: 100;
+  height: 36px;
+  z-index: 101;
+  background: #FFFFFF;
+  color: #1A1612;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #1A1612;
+}
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.top-bar-social {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.top-bar-social a {
+  color: #1A1612;
+  display: inline-flex;
+  transition: opacity 0.3s ease;
+}
+.top-bar-social a:hover { opacity: 0.6; }
+.top-bar-name {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-left: 0.4rem;
+}
+.top-bar-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+.top-bar-icons a,
+.top-bar-icons button {
+  color: #1A1612;
+  display: inline-flex;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.3s ease;
+}
+.top-bar-icons a:hover,
+.top-bar-icons button:hover { opacity: 0.5; }
+
+@media (max-width: 768px) {
+  .top-bar { height: 30px; }
+  .top-bar-name { display: none; }
+  .top-bar-social { gap: 0.5rem; }
+  .top-bar-icons { gap: 0.6rem; }
+}
+
+/* ── Header ── */
+.header {
+  position: fixed;
+  top: 36px; left: 0; right: 0;
+  height: auto;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: #FFFFFF !important;
-  border-bottom: 1px solid var(--line-hairline);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
+  padding: 1rem 0 0.6rem;
 }
 .header.dark.scrolled {
   background: rgba(11, 9, 8, 0.7);
@@ -565,23 +635,22 @@ body:has(.vb.v2) {
 }
 
 .header.v2 {
-  height: 88px;
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  padding: 0;
+  height: auto;
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 1rem 0 0.6rem;
+  flex-direction: column;
 }
 .header.v2.scrolled {
-  background: rgba(255, 255, 255, 0.85);
-  -webkit-backdrop-filter: blur(20px) saturate(150%);
-  backdrop-filter: blur(20px) saturate(150%);
-  border-bottom-color: rgba(26, 22, 18, 0.08);
-  height: 72px;
+  background: #FFFFFF !important;
+  border-bottom-color: rgba(0,0,0,0.1);
 }
 .header.v2 .header-inner {
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 2rem;
+  gap: 0.6rem;
 }
 .header.v2 .header-nav {
   display: flex;
@@ -607,13 +676,9 @@ body:has(.vb.v2) {
   transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .header.v2 .header-nav a:hover::after { width: 100%; }
-.header.v2 .header-nav { justify-self: center; }
+.header.v2 .header-nav { justify-content: center; }
 .header.v2 .header-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  justify-self: end;
-  flex-shrink: 0;
+  display: none;
 }
 .header.v2 .lang-switcher {
   display: inline-flex;
@@ -659,10 +724,9 @@ body:has(.vb.v2) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
 }
 .header.v2 .header-logo-img img {
-  height: 52px;
+  height: 70px;
   width: auto;
   object-fit: contain;
   transition: height 0.4s ease;
@@ -750,8 +814,8 @@ body:has(.vb.v2) {
 /* Scroll Video Hero */
 .scroll-video-hero {
   position: relative;
-  height: calc(100vh - 80px);
-  margin-top: 80px;
+  height: calc(100vh - 160px);
+  margin-top: 160px;
   overflow: hidden;
 }
 .scroll-video-sticky {
@@ -2509,7 +2573,7 @@ body:has(.vb.v2) {
 }
 
 @media (max-width: 768px) {
-  .scroll-video-hero { height: calc(60vh - 80px); }
+  .scroll-video-hero { height: calc(60vh - 140px); }
   .header.v2 .header-nav { display: none; }
   .header.v2 .header-actions .lang-switcher { display: none; }
   .vb-hero-h1 .line-2 { margin-left: 0.5em; }
@@ -2567,6 +2631,67 @@ body:has(.vb.v2) {
 <!-- ============================================================= -->
 <!-- HEADER                                                         -->
 <!-- ============================================================= -->
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <div class="top-bar-social">
+        <!-- Facebook -->
+        <a href="#" aria-label="Facebook">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="#" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <!-- Pinterest -->
+        <a href="#" aria-label="Pinterest">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.08 2.46 7.58 5.97 9.1-.08-.72-.16-1.84.03-2.63.17-.71 1.12-4.74 1.12-4.74s-.29-.57-.29-1.41c0-1.32.77-2.31 1.72-2.31.81 0 1.2.61 1.2 1.34 0 .81-.52 2.03-.79 3.16-.22.94.47 1.71 1.4 1.71 1.68 0 2.97-1.77 2.97-4.33 0-2.26-1.63-3.84-3.95-3.84-2.69 0-4.27 2.02-4.27 4.11 0 .81.31 1.69.7 2.16.08.1.09.18.07.28-.07.3-.24.94-.27 1.07-.04.18-.14.22-.33.13-1.23-.57-2-2.37-2-3.81 0-3.1 2.25-5.95 6.49-5.95 3.41 0 6.06 2.43 6.06 5.67 0 3.39-2.14 6.11-5.1 6.11-1 0-1.93-.52-2.25-1.13l-.61 2.34c-.22.86-.82 1.93-1.22 2.59.92.28 1.89.44 2.91.44 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="#" aria-label="WhatsApp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15s-.77.97-.94 1.17c-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.88 1.21 3.08.15.2 2.09 3.19 5.06 4.47.71.31 1.26.49 1.69.63.71.23 1.35.19 1.86.12.57-.08 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.21-.57-.36zM12.05 21.5c-1.8 0-3.55-.48-5.08-1.4l-.36-.22-3.79.99 1.01-3.69-.24-.38A9.44 9.44 0 012.5 12.05C2.5 6.8 6.8 2.5 12.05 2.5c2.55 0 4.95.99 6.76 2.8a9.5 9.5 0 012.8 6.75c0 5.25-4.3 9.55-9.56 9.55zM12.05.5C5.7.5.5 5.7.5 12.05c0 2.05.54 4.05 1.56 5.82L.5 23.5l5.78-1.52a11.5 11.5 0 005.77 1.56c6.35 0 11.55-5.2 11.55-11.55S18.4.5 12.05.5z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#" aria-label="YouTube">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.19a3.02 3.02 0 00-2.12-2.14C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.38.55A3.02 3.02 0 00.5 6.19 31.6 31.6 0 000 12a31.6 31.6 0 00.5 5.81 3.02 3.02 0 002.12 2.14c1.88.55 9.38.55 9.38.55s7.5 0 9.38-.55a3.02 3.02 0 002.12-2.14A31.6 31.6 0 0024 12a31.6 31.6 0 00-.5-5.81zM9.75 15.56V8.44L15.75 12l-6 3.56z"/></svg>
+        </a>
+      </div>
+      <span class="top-bar-name">Realza Tu Mirada</span>
+    </div>
+    <div class="top-bar-icons">
+      <!-- Buscar -->
+      <a href="#" aria-label="Buscar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+      </a>
+      <!-- Email -->
+      <a href="mailto:info@realzatumirada.com" aria-label="Email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+      </a>
+      <!-- Ayuda -->
+      <a href="#" aria-label="Ayuda">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 9a3 3 0 115.12 2.13c-.58.49-1.12 1.07-1.12 1.87v1"/><circle cx="12" cy="17" r=".5" fill="currentColor"/></svg>
+      </a>
+      <!-- Idioma -->
+      <a href="#" aria-label="Idioma">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+      </a>
+      <!-- Usuario -->
+      <a href="#" aria-label="Mi cuenta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0112 0v1"/></svg>
+      </a>
+      <!-- Favoritos -->
+      <a href="#" aria-label="Favoritos">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
+      </a>
+      <!-- Carrito -->
+      <a href="#" aria-label="Carrito">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
 <header class="header v2" id="header">
   <div class="container header-inner">
     <a href="#top" class="header-logo-img" aria-label="Realza tu mirada">
@@ -2579,18 +2704,6 @@ body:has(.vb.v2) {
       <a href="#formacion">Formaci&oacute;n</a>
       <a href="#nosotros">Nosotros</a>
     </nav>
-
-    <div class="header-actions">
-      <div class="lang-switcher">
-        <button class="active" data-lang="ES">ES</button>
-        <span class="sep"></span>
-        <button data-lang="CA">CA</button>
-      </div>
-      <a href="#reservar" class="btn-reservar-mini">
-        Reservar cita
-        <span class="arrow">&rarr;</span>
-      </a>
-    </div>
   </div>
 </header>
 
