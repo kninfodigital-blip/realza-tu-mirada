@@ -18,10 +18,10 @@
 
     /* ─── MARQUEE ─── */
     'marquee-track': {
-      es: '<span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pestañas</span><span class="sep">&#10038;</span><span>Sérum para pestañas</span><span class="sep">&#10038;</span><span>Diseño de mirada</span><span class="sep">&#10038;</span><span>Formación profesional</span><span class="sep">&#10038;</span><span>Extensiones clásicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pestañas</span><span class="sep">&#10038;</span><span>Sérum para pestañas</span><span class="sep">&#10038;</span><span>Diseño de mirada</span><span class="sep">&#10038;</span><span>Formación profesional</span><span class="sep">&#10038;</span><span>Extensiones clásicas</span><span class="sep">&#10038;</span><span>Laminado de cejas</span><span class="sep">&#10038;</span><span>Lifting de pestañas</span><span class="sep">&#10038;</span><span>Sérum para pestañas</span><span class="sep">&#10038;</span><span>Diseño de mirada</span><span class="sep">&#10038;</span><span>Formación profesional</span><span class="sep">&#10038;</span><span>Extensiones clásicas</span><span class="sep">&#10038;</span>',
-      ca: '<span>Laminat de celles</span><span class="sep">&#10038;</span><span>Lifting de pestanyes</span><span class="sep">&#10038;</span><span>Sèrum per a pestanyes</span><span class="sep">&#10038;</span><span>Disseny de mirada</span><span class="sep">&#10038;</span><span>Formació professional</span><span class="sep">&#10038;</span><span>Extensions clàssiques</span><span class="sep">&#10038;</span><span>Laminat de celles</span><span class="sep">&#10038;</span><span>Lifting de pestanyes</span><span class="sep">&#10038;</span><span>Sèrum per a pestanyes</span><span class="sep">&#10038;</span><span>Disseny de mirada</span><span class="sep">&#10038;</span><span>Formació professional</span><span class="sep">&#10038;</span><span>Extensions clàssiques</span><span class="sep">&#10038;</span><span>Laminat de celles</span><span class="sep">&#10038;</span><span>Lifting de pestanyes</span><span class="sep">&#10038;</span><span>Sèrum per a pestanyes</span><span class="sep">&#10038;</span><span>Disseny de mirada</span><span class="sep">&#10038;</span><span>Formació professional</span><span class="sep">&#10038;</span><span>Extensions clàssiques</span><span class="sep">&#10038;</span>',
-      en: '<span>Brow lamination</span><span class="sep">&#10038;</span><span>Lash lift</span><span class="sep">&#10038;</span><span>Lash serum</span><span class="sep">&#10038;</span><span>Gaze design</span><span class="sep">&#10038;</span><span>Professional training</span><span class="sep">&#10038;</span><span>Classic extensions</span><span class="sep">&#10038;</span><span>Brow lamination</span><span class="sep">&#10038;</span><span>Lash lift</span><span class="sep">&#10038;</span><span>Lash serum</span><span class="sep">&#10038;</span><span>Gaze design</span><span class="sep">&#10038;</span><span>Professional training</span><span class="sep">&#10038;</span><span>Classic extensions</span><span class="sep">&#10038;</span><span>Brow lamination</span><span class="sep">&#10038;</span><span>Lash lift</span><span class="sep">&#10038;</span><span>Lash serum</span><span class="sep">&#10038;</span><span>Gaze design</span><span class="sep">&#10038;</span><span>Professional training</span><span class="sep">&#10038;</span><span>Classic extensions</span><span class="sep">&#10038;</span>',
-      fr: '<span>Lamination des sourcils</span><span class="sep">&#10038;</span><span>Rehaussement de cils</span><span class="sep">&#10038;</span><span>Sérum pour cils</span><span class="sep">&#10038;</span><span>Design du regard</span><span class="sep">&#10038;</span><span>Formation professionnelle</span><span class="sep">&#10038;</span><span>Extensions classiques</span><span class="sep">&#10038;</span><span>Lamination des sourcils</span><span class="sep">&#10038;</span><span>Rehaussement de cils</span><span class="sep">&#10038;</span><span>Sérum pour cils</span><span class="sep">&#10038;</span><span>Design du regard</span><span class="sep">&#10038;</span><span>Formation professionnelle</span><span class="sep">&#10038;</span><span>Extensions classiques</span><span class="sep">&#10038;</span><span>Lamination des sourcils</span><span class="sep">&#10038;</span><span>Rehaussement de cils</span><span class="sep">&#10038;</span><span>Sérum pour cils</span><span class="sep">&#10038;</span><span>Design du regard</span><span class="sep">&#10038;</span><span>Formation professionnelle</span><span class="sep">&#10038;</span><span>Extensions classiques</span><span class="sep">&#10038;</span>'
+      es: '<span>Lifting de pestañas</span><span class="sep">&#10038;</span><span>Extensiones de pestañas</span><span class="sep">&#10038;</span><span>Sérum para pestañas</span><span class="sep">&#10038;</span><span>Diseño de mirada</span><span class="sep">&#10038;</span><span>Formación profesional</span><span class="sep">&#10038;</span><span>Lifting de pestañas</span><span class="sep">&#10038;</span><span>Extensiones de pestañas</span><span class="sep">&#10038;</span><span>Sérum para pestañas</span><span class="sep">&#10038;</span><span>Diseño de mirada</span><span class="sep">&#10038;</span><span>Formación profesional</span><span class="sep">&#10038;</span><span>Lifting de pestañas</span><span class="sep">&#10038;</span><span>Extensiones de pestañas</span><span class="sep">&#10038;</span><span>Sérum para pestañas</span><span class="sep">&#10038;</span><span>Diseño de mirada</span><span class="sep">&#10038;</span><span>Formación profesional</span><span class="sep">&#10038;</span>',
+      ca: '<span>Lifting de pestanyes</span><span class="sep">&#10038;</span><span>Extensions de pestanyes</span><span class="sep">&#10038;</span><span>Sèrum per a pestanyes</span><span class="sep">&#10038;</span><span>Disseny de mirada</span><span class="sep">&#10038;</span><span>Formació professional</span><span class="sep">&#10038;</span><span>Lifting de pestanyes</span><span class="sep">&#10038;</span><span>Extensions de pestanyes</span><span class="sep">&#10038;</span><span>Sèrum per a pestanyes</span><span class="sep">&#10038;</span><span>Disseny de mirada</span><span class="sep">&#10038;</span><span>Formació professional</span><span class="sep">&#10038;</span><span>Lifting de pestanyes</span><span class="sep">&#10038;</span><span>Extensions de pestanyes</span><span class="sep">&#10038;</span><span>Sèrum per a pestanyes</span><span class="sep">&#10038;</span><span>Disseny de mirada</span><span class="sep">&#10038;</span><span>Formació professional</span><span class="sep">&#10038;</span>',
+      en: '<span>Lash lift</span><span class="sep">&#10038;</span><span>Lash extensions</span><span class="sep">&#10038;</span><span>Lash serum</span><span class="sep">&#10038;</span><span>Gaze design</span><span class="sep">&#10038;</span><span>Professional training</span><span class="sep">&#10038;</span><span>Lash lift</span><span class="sep">&#10038;</span><span>Lash extensions</span><span class="sep">&#10038;</span><span>Lash serum</span><span class="sep">&#10038;</span><span>Gaze design</span><span class="sep">&#10038;</span><span>Professional training</span><span class="sep">&#10038;</span><span>Lash lift</span><span class="sep">&#10038;</span><span>Lash extensions</span><span class="sep">&#10038;</span><span>Lash serum</span><span class="sep">&#10038;</span><span>Gaze design</span><span class="sep">&#10038;</span><span>Professional training</span><span class="sep">&#10038;</span>',
+      fr: '<span>Rehaussement de cils</span><span class="sep">&#10038;</span><span>Extensions de cils</span><span class="sep">&#10038;</span><span>Sérum pour cils</span><span class="sep">&#10038;</span><span>Design du regard</span><span class="sep">&#10038;</span><span>Formation professionnelle</span><span class="sep">&#10038;</span><span>Rehaussement de cils</span><span class="sep">&#10038;</span><span>Extensions de cils</span><span class="sep">&#10038;</span><span>Sérum pour cils</span><span class="sep">&#10038;</span><span>Design du regard</span><span class="sep">&#10038;</span><span>Formation professionnelle</span><span class="sep">&#10038;</span><span>Rehaussement de cils</span><span class="sep">&#10038;</span><span>Extensions de cils</span><span class="sep">&#10038;</span><span>Sérum pour cils</span><span class="sep">&#10038;</span><span>Design du regard</span><span class="sep">&#10038;</span><span>Formation professionnelle</span><span class="sep">&#10038;</span>'
     },
 
     /* ─── MANIFEST ─── */
@@ -37,10 +37,10 @@
     /* ─── SERVICES ─── */
     'svc-eyebrow': { es: '\u2014 El cat\u00e1logo', ca: '\u2014 El cat\u00e0leg', en: '\u2014 The catalogue', fr: '\u2014 Le catalogue' },
     'svc-title': {
-      es: "Cuatro cap\u00edtulos<br /><span class='ital'>de mirada.</span>",
-      ca: "Quatre cap\u00edtols<br /><span class='ital'>de mirada.</span>",
-      en: "Four chapters<br /><span class='ital'>of gaze.</span>",
-      fr: "Quatre chapitres<br /><span class='ital'>du regard.</span>"
+      es: "Tres cap\u00edtulos<br /><span class='ital'>de mirada.</span>",
+      ca: "Tres cap\u00edtols<br /><span class='ital'>de mirada.</span>",
+      en: "Three chapters<br /><span class='ital'>of gaze.</span>",
+      fr: "Trois chapitres<br /><span class='ital'>du regard.</span>"
     },
     'svc-sub': {
       es: 'Cada cita es una conversaci\u00f3n con tu rostro antes de poner las manos. Esto es lo que ofrecemos.',
@@ -72,7 +72,7 @@
     'btn-detail':   { es: 'Ver detalle', ca: 'Veure detall', en: 'View details', fr: 'Voir d\u00e9tails' },
 
     /* Service II */
-    'svc2-micro': { es: 'Cap\u00edtulo dos \u00b7 II', ca: 'Cap\u00edtol dos \u00b7 II', en: 'Chapter two \u00b7 II', fr: 'Chapitre deux \u00b7 II' },
+    'svc2-micro': { es: 'Cap\u00edtulo uno \u00b7 I', ca: 'Cap\u00edtol u \u00b7 I', en: 'Chapter one \u00b7 I', fr: 'Chapitre un \u00b7 I' },
     'svc2-title': {
       es: "Lifting <span class='ital'>de pesta\u00f1as.</span>",
       ca: "Lifting <span class='ital'>de pestanyes.</span>",
@@ -90,12 +90,12 @@
     'svc2-bullet3': { es: 'Apto con s\u00e9rum', ca: 'Compatible amb s\u00e8rum', en: 'Serum compatible', fr: 'Compatible avec s\u00e9rum' },
 
     /* Service III */
-    'svc3-micro': { es: 'Cap\u00edtulo tres \u00b7 III', ca: 'Cap\u00edtol tres \u00b7 III', en: 'Chapter three \u00b7 III', fr: 'Chapitre trois \u00b7 III' },
+    'svc3-micro': { es: 'Cap\u00edtulo dos \u00b7 II', ca: 'Cap\u00edtol dos \u00b7 II', en: 'Chapter two \u00b7 II', fr: 'Chapitre deux \u00b7 II' },
     'svc3-title': {
-      es: "Extensiones <span class='ital'>cl\u00e1sicas.</span>",
-      ca: "Extensions <span class='ital'>cl\u00e0ssiques.</span>",
-      en: "Classic <span class='ital'>extensions.</span>",
-      fr: "Extensions <span class='ital'>classiques.</span>"
+      es: "Extensiones <span class='ital'>de pesta\u00f1as.</span>",
+      ca: "Extensions <span class='ital'>de pestanyes.</span>",
+      en: "Lash <span class='ital'>extensions.</span>",
+      fr: "Extensions <span class='ital'>de cils.</span>"
     },
     'svc3-desc': {
       es: 'Pelo a pelo, mapeadas a la forma de tus ojos. Volumen real que se siente tuyo desde el primer parpadeo, no postizo ni estridente.',
@@ -108,7 +108,7 @@
     'svc3-bullet3': { es: 'Adhesivo hipoalerg\u00e9nico', ca: 'Adhesiu hipoal\u00b7lerg\u00e8nic', en: 'Hypoallergenic adhesive', fr: 'Adh\u00e9sif hypoallerg\u00e9nique' },
 
     /* Service IV */
-    'svc4-micro': { es: 'Cap\u00edtulo cuatro \u00b7 IV', ca: 'Cap\u00edtol quatre \u00b7 IV', en: 'Chapter four \u00b7 IV', fr: 'Chapitre quatre \u00b7 IV' },
+    'svc4-micro': { es: 'Cap\u00edtulo tres \u00b7 III', ca: 'Cap\u00edtol tres \u00b7 III', en: 'Chapter three \u00b7 III', fr: 'Chapitre trois \u00b7 III' },
     'svc4-title': {
       es: "Dise\u00f1o <span class='ital'>de mirada.</span>",
       ca: "Disseny <span class='ital'>de mirada.</span>",
@@ -161,7 +161,7 @@
     'book-svc1-d': { es: '60 min \u00b7 Consulta', ca: '60 min \u00b7 Consulta', en: '60 min \u00b7 Consultation', fr: '60 min \u00b7 Consultation' },
     'book-svc2-t': { es: 'Lifting de pesta\u00f1as', ca: 'Lifting de pestanyes', en: 'Lash lift', fr: 'Rehaussement de cils' },
     'book-svc2-d': { es: '75 min \u00b7 Consulta', ca: '75 min \u00b7 Consulta', en: '75 min \u00b7 Consultation', fr: '75 min \u00b7 Consultation' },
-    'book-svc3-t': { es: 'Extensiones cl\u00e1sicas', ca: 'Extensions cl\u00e0ssiques', en: 'Classic extensions', fr: 'Extensions classiques' },
+    'book-svc3-t': { es: 'Extensiones de pesta\u00f1as', ca: 'Extensions de pestanyes', en: 'Lash extensions', fr: 'Extensions de cils' },
     'book-svc3-d': { es: '120 min \u00b7 Consulta', ca: '120 min \u00b7 Consulta', en: '120 min \u00b7 Consultation', fr: '120 min \u00b7 Consultation' },
     'book-svc4-t': { es: 'Dise\u00f1o de mirada', ca: 'Disseny de mirada', en: 'Gaze design', fr: 'Design du regard' },
     'book-svc4-d': { es: '90 min \u00b7 Consulta', ca: '90 min \u00b7 Consulta', en: '90 min \u00b7 Consultation', fr: '90 min \u00b7 Consultation' },
